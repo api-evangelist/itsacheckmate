@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ItsaCheckmate Marketplace for Developers API — Menus
+  description: 'Menus surface of the ItsaCheckmate Marketplace for Developers API. 1 operations. Lead operation: ItsaCheckmate Get Menu. Self-contained Naftiko capability covering one ItsaCheckmate business surface.'
+  tags:
+  - ItsaCheckmate
+  - Menus
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    ITSACHECKMATE_ACCESS_TOKEN: ITSACHECKMATE_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: marketplace-api-menus
+    baseUri: https://sandbox-api.itsacheckmate.com
+    description: ItsaCheckmate Marketplace for Developers API — Menus business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.ITSACHECKMATE_ACCESS_TOKEN}}'
+    resources:
+    - name: menu-order-source
+      path: /api/v2/menu/{order_source}
+      operations:
+      - name: getMenu
+        method: GET
+        description: ItsaCheckmate Get Menu
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_source
+          in: path
+          type: string
+          required: true
+          description: Name of the ordering platform (e.g. doordash, ubereats, grubhub).
+        - name: accept
+          in: header
+          type: string
+          required: false
+          description: Response media type. Defaults to application/json.
+  exposes:
+  - type: rest
+    namespace: marketplace-api-menus-rest
+    port: 8080
+    description: REST adapter for ItsaCheckmate Marketplace for Developers API — Menus. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/menu-order-source
+      name: menu-order-source
+      description: REST surface for menu-order-source.
+      operations:
+      - method: GET
+        name: getMenu
+        description: ItsaCheckmate Get Menu
+        call: marketplace-api-menus.getMenu
+        with:
+          order_source: rest.order_source
+          accept: rest.accept
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketplace-api-menus-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ItsaCheckmate Marketplace for Developers API — Menus. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-menu
+      description: ItsaCheckmate Get Menu
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketplace-api-menus.getMenu
+      with:
+        order_source: tools.order_source
+        accept: tools.accept
+      outputParameters:
+      - type: object
+        mapping: $.

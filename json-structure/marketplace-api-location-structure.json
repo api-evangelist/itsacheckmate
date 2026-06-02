@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-location-structure.json",
+  "name": "Location",
+  "description": "A restaurant location served by ItsaCheckmate.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Location display name."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Location time zone in TZ database format."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the location has been verified."
+    },
+    "pos_system": {
+      "type": "string",
+      "description": "Name of the connected POS system."
+    },
+    "address": {
+      "title": "Address",
+      "type": "object",
+      "description": "Postal address of a location.",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address."
+        },
+        "city": {
+          "type": "string",
+          "description": "City."
+        },
+        "state": {
+          "type": "string",
+          "description": "State or region code."
+        },
+        "zip": {
+          "type": "string",
+          "description": "Postal code."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO country code."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ItsaCheckmate
+providerId: itsacheckmate
+created: '2026-06-02'
+modified: '2026-06-02'
+reconciled: false
+tags:
+  - Restaurant
+  - Point Of Sale
+  - Online Ordering
+  - Delivery
+  - Integration
+description: >-
+  ItsaCheckmate (Checkmate) prices its delivery/order-channel integration as a
+  flat per-location monthly subscription with no setup fees and month-to-month
+  contracts. Publicly reported entry pricing is approximately $85/month per
+  location for up to two ordering services and $100/month per location for
+  unlimited services. Additional Checkmate solutions (Direct Ordering,
+  Reconcile, virtual brands, and the Marketplace for Developers API) are quoted
+  on request. The official pricing page is gated; figures below are drawn from
+  partner integration guides and third-party listings and should be confirmed
+  against a Checkmate quote.
+sources:
+  - https://support.itsacheckmate.com/hc/en-us/articles/8105450179867-Checkmate-Pricing
+  - https://www.itsacheckmate.com/pricing
+  - https://pos.heartlandpaymentsystems.com/kb/kb_upload/file/ItsaCheckmate%20Third-Party%20Integration%20Master%20Dealer%20Guide.pdf
+plans:
+  - id: itsacheckmate-two-services
+    name: Up to 2 Services
+    type: subscription
+    description: Per-location subscription covering up to two ordering platforms.
+    entries:
+      - label: Per location, up to 2 services
+        name: location_two_services
+        type: subscription
+        metric: month
+        limit: 2
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: '$85/month per location'
+        userMultiplied: false
+    elements:
+      - name: Two-way POS integration
+      - name: Menu management
+      - name: Consolidated order injection
+      - name: No setup fee
+      - name: Month-to-month contract
+  - id: itsacheckmate-unlimited-services
+    name: Unlimited Services
+    type: subscription
+    description: Per-location subscription covering unlimited ordering platforms.
+    entries:
+      - label: Per location, unlimited services
+        name: location_unlimited_services
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: US
+        unit: '1'
+        price: '$100/month per location'
+        userMultiplied: false
+    elements:
+      - name: Two-way POS integration
+      - name: Menu management
+      - name: Consolidated order injection
+      - name: Unlimited ordering platforms
+      - name: No setup fee
+      - name: Month-to-month contract
+  - id: itsacheckmate-additional-solutions
+    name: Additional Solutions
+    type: enterprise
+    description: >-
+      Custom-quoted Checkmate solutions including Direct Ordering, Reconcile,
+      virtual/ghost-kitchen brands, and Marketplace for Developers API access.
+    entries:
+      - label: Custom solutions
+        name: custom_solutions
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: '1'
+        price: 'contact sales'
+        userMultiplied: false
+    elements:
+      - name: Direct Ordering
+      - name: Reconcile reconciliation
+      - name: Virtual brand management
+      - name: Marketplace for Developers API

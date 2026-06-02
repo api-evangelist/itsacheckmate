@@ -1,0 +1,23 @@
+{
+  "external_id": "id_500123",
+  "order_source": "doordash",
+  "group_order": false,
+  "customer": {
+    "name": "Downtown Diner",
+    "phone": "+15551234567"
+  },
+  "items": [
+    {
+      "id": "id_500123",
+      "name": "Downtown Diner",
+      "quantity": 1,
+      "price": 1099
+    }
+  ],
+  "totals": {
+    "subtotal": 1099,
+    "tax": 1099,
+    "total": 1099
+  },
+  "payment_status": "paid"
+}

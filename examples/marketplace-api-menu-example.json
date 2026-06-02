@@ -1,0 +1,19 @@
+{
+  "order_source": "doordash",
+  "location_id": "id_500123",
+  "categories": [
+    {
+      "id": "id_500123",
+      "name": "Downtown Diner",
+      "items": [
+        {
+          "id": "id_500123",
+          "name": "Downtown Diner",
+          "description": "Quarter-pound beef patty with cheddar.",
+          "price": 1099,
+          "available": true
+        }
+      ]
+    }
+  ]
+}

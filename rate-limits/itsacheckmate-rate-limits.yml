@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ItsaCheckmate
+providerId: itsacheckmate
+created: '2026-06-02'
+modified: '2026-06-02'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Point Of Sale
+  - Online Ordering
+  - Integration
+description: >-
+  The ItsaCheckmate Marketplace for Developers API does not publish explicit
+  per-second or per-minute request-rate numbers in its public reference. Access
+  is governed primarily by short-lived scoped access tokens that expire after 24
+  hours by default and must be refreshed, and by a required location-activation
+  gate before menu and order operations succeed. Limits below capture the
+  documented token-lifecycle and access-control behavior; raw throughput limits
+  are not documented and should be confirmed with Checkmate partner support.
+sources:
+  - https://openapi-itsacheckmate.readme.io/reference/refresh-token
+  - https://openapi-itsacheckmate.readme.io/reference/get-token-details
+  - https://openapi-itsacheckmate.readme.io/reference/activate-authorization
+responseCodes:
+  unauthorized: 401
+  forbidden: 403
+limits:
+  - name: Access token lifetime
+    scope: token
+    metric: varies
+    limit: 'Access tokens expire 24 hours after issuance by default'
+    notes: Renew with the refresh_token grant before expiry; poll /oauth/token/info to check remaining lifetime.
+  - name: Marketplace API request throughput
+    scope: account
+    metric: varies
+    limit: 'Not publicly documented — confirm with Checkmate partner support'
+    notes: No published per-second or per-minute request ceiling in the developer reference.
+  - name: Menu and order access gate
+    scope: location
+    metric: varies
+    limit: 'Location must be activated (and verified for menus/orders) before access is granted'
+    notes: Calling menu or order operations before activation returns 401/403.
+policies:
+  - name: Token refresh
+    description: >-
+      Use GET /oauth/token/info to determine remaining token lifetime and POST
+      /oauth/token with grant_type=refresh_token to obtain a new access token
+      before the 24-hour expiry.
+  - name: Scoped access
+    description: >-
+      Tokens are issued with specific scopes; the menus scope is required for
+      Get Menu. Operations outside a token's scope return 403.
+  - name: Activation prerequisite
+    description: >-
+      Activate Location must be called first after token issuance; menu and
+      order operations additionally require a verified location.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-schema/marketplace-api-address-schema.json",
+  "title": "Address",
+  "description": "Postal address of a location.",
+  "type": "object",
+  "properties": {
+    "street": {
+      "type": "string",
+      "description": "Street address."
+    },
+    "city": {
+      "type": "string",
+      "description": "City."
+    },
+    "state": {
+      "type": "string",
+      "description": "State or region code."
+    },
+    "zip": {
+      "type": "string",
+      "description": "Postal code."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO country code."
+    }
+  }
+}

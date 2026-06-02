@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-customer-structure.json",
+  "name": "Customer",
+  "description": "Customer who placed the order.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Customer name."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Customer phone number in E.164 format."
+    }
+  }
+}

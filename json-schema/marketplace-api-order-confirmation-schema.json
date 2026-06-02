@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-schema/marketplace-api-order-confirmation-schema.json",
+  "title": "OrderConfirmation",
+  "description": "Confirmation that an order was accepted into the POS.",
+  "type": "object",
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "description": "ItsaCheckmate order identifier."
+    },
+    "external_id": {
+      "type": "string",
+      "description": "Originating platform order identifier."
+    },
+    "status": {
+      "type": "string",
+      "description": "Order acceptance status.",
+      "enum": [
+        "accepted",
+        "rejected",
+        "pending"
+      ]
+    },
+    "pos_reference": {
+      "type": "string",
+      "description": "Reference assigned by the POS system."
+    }
+  }
+}

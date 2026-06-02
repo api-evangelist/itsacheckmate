@@ -1,0 +1,14 @@
+{
+  "id": "id_500123",
+  "name": "Downtown Diner",
+  "timezone": "America/New_York",
+  "verified": true,
+  "pos_system": "Toast",
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10001",
+    "country": "US"
+  }
+}

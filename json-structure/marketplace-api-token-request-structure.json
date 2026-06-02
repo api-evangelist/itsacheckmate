@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-token-request-structure.json",
+  "name": "TokenRequest",
+  "description": "OAuth-style token request body.",
+  "type": "object",
+  "required": [
+    "grant_type",
+    "client_id",
+    "client_secret"
+  ],
+  "properties": {
+    "grant_type": {
+      "type": "string",
+      "description": "Grant type. Use authorization_code initially or refresh_token to renew.",
+      "enum": [
+        "authorization_code",
+        "refresh_token"
+      ]
+    },
+    "client_id": {
+      "type": "string",
+      "description": "Client identifier from the platform app UI."
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "Client secret from the platform app UI."
+    },
+    "redirect_uri": {
+      "type": "string",
+      "description": "Redirect URI. Omit for the refresh_token flow."
+    },
+    "code": {
+      "type": "string",
+      "description": "One-time-use authorization code. Omit for the refresh_token flow."
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token. Omit for the initial authorization_code request."
+    }
+  }
+}

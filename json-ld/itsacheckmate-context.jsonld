@@ -1,0 +1,176 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ck": "https://openapi-itsacheckmate.readme.io/vocab#",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "id": {
+      "@id": "ck:id",
+      "@type": "xsd:string"
+    },
+    "type": "@type",
+    "TokenRequest": "ck:TokenRequest",
+    "TokenResponse": "ck:TokenResponse",
+    "TokenInfo": "ck:TokenInfo",
+    "ActivationResult": "ck:ActivationResult",
+    "Location": "schema:FoodEstablishment",
+    "Address": "schema:PostalAddress",
+    "Menu": "schema:Menu",
+    "MenuCategory": "ck:MenuCategory",
+    "MenuItem": "schema:MenuItem",
+    "Order": "schema:Order",
+    "Customer": "schema:Person",
+    "OrderItem": "schema:OrderItem",
+    "OrderTotals": "schema:PriceSpecification",
+    "OrderConfirmation": "ck:OrderConfirmation",
+    "grantType": {
+      "@id": "ck:grant_type",
+      "@type": "xsd:string"
+    },
+    "clientId": {
+      "@id": "ck:client_id",
+      "@type": "xsd:string"
+    },
+    "clientSecret": {
+      "@id": "ck:client_secret",
+      "@type": "xsd:string"
+    },
+    "redirectUri": {
+      "@id": "ck:redirect_uri",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "ck:code",
+      "@type": "xsd:string"
+    },
+    "refreshToken": {
+      "@id": "ck:refresh_token",
+      "@type": "xsd:string"
+    },
+    "accessToken": {
+      "@id": "ck:access_token",
+      "@type": "xsd:string"
+    },
+    "tokenType": {
+      "@id": "ck:token_type",
+      "@type": "xsd:string"
+    },
+    "expiresIn": {
+      "@id": "ck:expires_in",
+      "@type": "xsd:integer"
+    },
+    "scope": {
+      "@id": "ck:scope",
+      "@type": "xsd:string"
+    },
+    "resourceOwnerId": {
+      "@id": "ck:resource_owner_id",
+      "@type": "xsd:string"
+    },
+    "createdAt": "schema:dateCreated",
+    "activated": {
+      "@id": "ck:activated",
+      "@type": "xsd:boolean"
+    },
+    "locationId": {
+      "@id": "ck:location_id",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "ck:message",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "timezone": "schema:timezone",
+    "verified": {
+      "@id": "ck:verified",
+      "@type": "xsd:boolean"
+    },
+    "posSystem": {
+      "@id": "ck:pos_system",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "ck:address",
+      "@type": "@id"
+    },
+    "street": "schema:streetAddress",
+    "city": "schema:addressLocality",
+    "state": "schema:addressRegion",
+    "zip": "schema:postalCode",
+    "country": "schema:addressCountry",
+    "orderSource": {
+      "@id": "ck:order_source",
+      "@type": "xsd:string"
+    },
+    "categories": {
+      "@id": "ck:categories",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "items": {
+      "@id": "ck:items",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "description": "schema:description",
+    "price": {
+      "@id": "ck:price",
+      "@type": "xsd:integer"
+    },
+    "available": {
+      "@id": "ck:available",
+      "@type": "xsd:boolean"
+    },
+    "externalId": {
+      "@id": "ck:external_id",
+      "@type": "xsd:string"
+    },
+    "groupOrder": {
+      "@id": "ck:group_order",
+      "@type": "xsd:boolean"
+    },
+    "customer": {
+      "@id": "ck:customer",
+      "@type": "@id"
+    },
+    "phone": "schema:telephone",
+    "quantity": {
+      "@id": "ck:quantity",
+      "@type": "xsd:integer"
+    },
+    "totals": {
+      "@id": "ck:totals",
+      "@type": "@id"
+    },
+    "subtotal": {
+      "@id": "ck:subtotal",
+      "@type": "xsd:integer"
+    },
+    "tax": {
+      "@id": "ck:tax",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "ck:total",
+      "@type": "xsd:integer"
+    },
+    "paymentStatus": {
+      "@id": "ck:payment_status",
+      "@type": "xsd:string"
+    },
+    "orderId": {
+      "@id": "ck:order_id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ck:status",
+      "@type": "xsd:string"
+    },
+    "posReference": {
+      "@id": "ck:pos_reference",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-activation-result-structure.json",
+  "name": "ActivationResult",
+  "description": "Result of activating the token's location.",
+  "type": "object",
+  "properties": {
+    "activated": {
+      "type": "boolean",
+      "description": "Whether the location was activated."
+    },
+    "location_id": {
+      "type": "string",
+      "description": "Identifier of the activated location."
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable activation message."
+    }
+  }
+}

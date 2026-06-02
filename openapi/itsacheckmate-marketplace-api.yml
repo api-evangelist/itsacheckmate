@@ -1,0 +1,653 @@
+openapi: 3.1.0
+info:
+  title: ItsaCheckmate Marketplace for Developers API
+  version: '2.2'
+  description: >-
+    ItsaCheckmate (Checkmate) is restaurant middleware that connects
+    point-of-sale (POS) systems to delivery marketplaces and online ordering
+    channels. The Marketplace for Developers API is an open REST API that lets
+    technology partners build a single integration to read and write menus,
+    orders, and locations across 50+ POS systems and 100+ ordering platforms.
+
+    Authentication uses an OAuth-style flow: a token endpoint issues short-lived,
+    scoped access tokens (24-hour default expiry) and refresh tokens. After
+    obtaining a token a partner must call the Activate Location endpoint before
+    any menu or order operation will succeed. Menu retrieval requires the
+    `menus` scope. Order submission supports both standard and group orders via
+    a `group_order` flag and requires a verified location.
+
+    Endpoints documented here were confirmed from the official Checkmate
+    developer reference (openapi-itsacheckmate.readme.io) and its llms.txt
+    index. The reference also publishes ready-to-use Postman collections and an
+    Update Notice webhook for real-time menu synchronization.
+  contact:
+    name: ItsaCheckmate Marketplace for Developers
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  license:
+    name: ItsaCheckmate Developer Terms
+    url: https://www.itsacheckmate.com/solutions/marketplace-for-developers
+  x-generated-from: documentation
+  x-source-url: https://openapi-itsacheckmate.readme.io/llms.txt
+  x-last-validated: '2026-06-02'
+servers:
+  - url: https://sandbox-api.itsacheckmate.com
+    description: ItsaCheckmate sandbox API base URL
+tags:
+  - name: OAuth
+    description: Token issuance, refresh, and introspection.
+  - name: Locations
+    description: Location activation and location detail retrieval.
+  - name: Menus
+    description: Menu retrieval per ordering platform.
+  - name: Orders
+    description: Standard and group order submission into the POS.
+paths:
+  /oauth/token:
+    post:
+      tags:
+        - OAuth
+      operationId: createToken
+      summary: ItsaCheckmate Create or Refresh Token
+      description: >-
+        Issues an access token and refresh token using the authorization_code
+        grant (initial issuance) or the refresh_token grant (renewal). Access
+        tokens expire in 24 hours by default. Tokens are scoped; the menus scope
+        is required to call the Get Menu endpoint.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+            examples:
+              CreateTokenRequestExample:
+                summary: Default createToken request
+                x-microcks-default: true
+                value:
+                  grant_type: authorization_code
+                  client_id: ck_app_a1b2c3
+                  client_secret: ck_secret_d4e5f6
+                  redirect_uri: https://partner.example.com/oauth/callback
+                  code: one_time_code_123456
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+              examples:
+                CreateToken200Example:
+                  summary: Default createToken 200 response
+                  x-microcks-default: true
+                  value:
+                    access_token: at_a1b2c3d4e5f6
+                    refresh_token: rt_g7h8i9j0k1l2
+                    token_type: Bearer
+                    expires_in: 86400
+                    scope: menus orders
+        '401':
+          description: Invalid client credentials or grant
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /oauth/token/info:
+    get:
+      tags:
+        - OAuth
+      operationId: getTokenDetails
+      summary: ItsaCheckmate Get Token Details
+      description: >-
+        Returns information about the current access token, including
+        expiration and granted scopes, so a partner can determine when to
+        refresh credentials before the token expires.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+              examples:
+                GetTokenDetails200Example:
+                  summary: Default getTokenDetails 200 response
+                  x-microcks-default: true
+                  value:
+                    resource_owner_id: loc_500123
+                    scope:
+                      - menus
+                      - orders
+                    expires_in: 84210
+                    created_at: 1718153645
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/activate:
+    get:
+      tags:
+        - Locations
+      operationId: activateLocation
+      summary: ItsaCheckmate Activate Location
+      description: >-
+        Activates the location associated with the access token. This must be
+        the first call made after generating an access token; until the
+        location is activated, none of the Menu or Order operations can be
+        accessed.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: accept
+          in: header
+          description: Response media type. Defaults to application/json.
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
+            default: application/json
+          example: application/json
+      responses:
+        '200':
+          description: Location activated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationResult'
+              examples:
+                ActivateLocation200Example:
+                  summary: Default activateLocation 200 response
+                  x-microcks-default: true
+                  value:
+                    activated: true
+                    location_id: loc_500123
+                    message: Location activated successfully
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/get_location:
+    get:
+      tags:
+        - Locations
+      operationId: getLocation
+      summary: ItsaCheckmate Get Location
+      description: >-
+        Returns the details of the location associated with the access token,
+        including its time zone in TZ database format. The location does not
+        have to be verified first in order to call this operation.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: accept
+          in: header
+          description: Response media type. Defaults to application/json.
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
+            default: application/json
+          example: application/json
+      responses:
+        '200':
+          description: Location detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+              examples:
+                GetLocation200Example:
+                  summary: Default getLocation 200 response
+                  x-microcks-default: true
+                  value:
+                    id: loc_500123
+                    name: Downtown Diner
+                    timezone: America/New_York
+                    verified: true
+                    pos_system: Toast
+                    address:
+                      street: 123 Main St
+                      city: New York
+                      state: NY
+                      zip: '10001'
+                      country: US
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/menu/{order_source}:
+    get:
+      tags:
+        - Menus
+      operationId: getMenu
+      summary: ItsaCheckmate Get Menu
+      description: >-
+        Returns the menu for the location as published to a specific ordering
+        platform. Requires an access token issued with the menus scope, and the
+        location has to be verified first.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: order_source
+          in: path
+          description: Name of the ordering platform (e.g. doordash, ubereats, grubhub).
+          required: true
+          schema:
+            type: string
+          example: doordash
+        - name: accept
+          in: header
+          description: Response media type. Defaults to application/json.
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
+            default: application/json
+          example: application/json
+      responses:
+        '200':
+          description: Menu for the ordering platform
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+              examples:
+                GetMenu200Example:
+                  summary: Default getMenu 200 response
+                  x-microcks-default: true
+                  value:
+                    order_source: doordash
+                    location_id: loc_500123
+                    categories:
+                      - id: cat_1001
+                        name: Burgers
+                        items:
+                          - id: item_2001
+                            name: Classic Cheeseburger
+                            description: Quarter-pound beef patty with cheddar.
+                            price: 1099
+                            available: true
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — token missing the menus scope
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/orders/{order_source}:
+    post:
+      tags:
+        - Orders
+      operationId: submitOrder
+      summary: ItsaCheckmate Submit Order
+      description: >-
+        Submits a standard order or a group order into the location's POS
+        system for a specific ordering platform. A group order, indicated by the
+        group_order flag, is an order placed by multiple individuals together.
+        The location must be verified before orders can be submitted.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: order_source
+          in: path
+          description: Name of the ordering platform the order originates from.
+          required: true
+          schema:
+            type: string
+          example: doordash
+        - name: accept
+          in: header
+          description: Response media type. Defaults to application/json.
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
+            default: application/json
+          example: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+            examples:
+              SubmitOrderRequestExample:
+                summary: Default submitOrder request
+                x-microcks-default: true
+                value:
+                  external_id: dd_98765
+                  order_source: doordash
+                  group_order: false
+                  customer:
+                    name: Jane Smith
+                    phone: '+15551234567'
+                  items:
+                    - id: item_2001
+                      name: Classic Cheeseburger
+                      quantity: 2
+                      price: 1099
+                  totals:
+                    subtotal: 2198
+                    tax: 195
+                    total: 2393
+                  payment_status: paid
+      responses:
+        '201':
+          description: Order accepted into the POS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderConfirmation'
+              examples:
+                SubmitOrder201Example:
+                  summary: Default submitOrder 201 response
+                  x-microcks-default: true
+                  value:
+                    order_id: ord_700456
+                    external_id: dd_98765
+                    status: accepted
+                    pos_reference: TOAST-A1B2C3
+        '400':
+          description: Bad request — invalid order payload
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — location not verified
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth-style scoped access token issued by /oauth/token.
+  schemas:
+    TokenRequest:
+      title: TokenRequest
+      type: object
+      description: OAuth-style token request body.
+      required:
+        - grant_type
+        - client_id
+        - client_secret
+      properties:
+        grant_type:
+          type: string
+          description: Grant type. Use authorization_code initially or refresh_token to renew.
+          enum:
+            - authorization_code
+            - refresh_token
+        client_id:
+          type: string
+          description: Client identifier from the platform app UI.
+        client_secret:
+          type: string
+          description: Client secret from the platform app UI.
+        redirect_uri:
+          type: string
+          description: Redirect URI. Omit for the refresh_token flow.
+        code:
+          type: string
+          description: One-time-use authorization code. Omit for the refresh_token flow.
+        refresh_token:
+          type: string
+          description: Refresh token. Omit for the initial authorization_code request.
+    TokenResponse:
+      title: TokenResponse
+      type: object
+      description: Issued access and refresh tokens.
+      properties:
+        access_token:
+          type: string
+          description: Short-lived scoped access token.
+        refresh_token:
+          type: string
+          description: Token used to obtain a new access token.
+        token_type:
+          type: string
+          description: Token type, always Bearer.
+        expires_in:
+          type: integer
+          description: Lifetime of the access token in seconds. Defaults to 86400 (24 hours).
+        scope:
+          type: string
+          description: Space-delimited list of granted scopes.
+    TokenInfo:
+      title: TokenInfo
+      type: object
+      description: Introspection details for the current access token.
+      properties:
+        resource_owner_id:
+          type: string
+          description: Identifier of the location that owns the token.
+        scope:
+          type: array
+          description: Granted scopes.
+          items:
+            type: string
+        expires_in:
+          type: integer
+          description: Seconds remaining before the access token expires.
+        created_at:
+          type: integer
+          description: Unix epoch seconds when the token was created.
+    ActivationResult:
+      title: ActivationResult
+      type: object
+      description: Result of activating the token's location.
+      properties:
+        activated:
+          type: boolean
+          description: Whether the location was activated.
+        location_id:
+          type: string
+          description: Identifier of the activated location.
+        message:
+          type: string
+          description: Human-readable activation message.
+    Location:
+      title: Location
+      type: object
+      description: A restaurant location served by ItsaCheckmate.
+      properties:
+        id:
+          type: string
+          description: Unique location identifier.
+        name:
+          type: string
+          description: Location display name.
+        timezone:
+          type: string
+          description: Location time zone in TZ database format.
+        verified:
+          type: boolean
+          description: Whether the location has been verified.
+        pos_system:
+          type: string
+          description: Name of the connected POS system.
+        address:
+          $ref: '#/components/schemas/Address'
+    Address:
+      title: Address
+      type: object
+      description: Postal address of a location.
+      properties:
+        street:
+          type: string
+          description: Street address.
+        city:
+          type: string
+          description: City.
+        state:
+          type: string
+          description: State or region code.
+        zip:
+          type: string
+          description: Postal code.
+        country:
+          type: string
+          description: ISO country code.
+    Menu:
+      title: Menu
+      type: object
+      description: A location menu as published to one ordering platform.
+      properties:
+        order_source:
+          type: string
+          description: Ordering platform this menu is published to.
+        location_id:
+          type: string
+          description: Identifier of the location the menu belongs to.
+        categories:
+          type: array
+          description: Menu categories.
+          items:
+            $ref: '#/components/schemas/MenuCategory'
+    MenuCategory:
+      title: MenuCategory
+      type: object
+      description: A category grouping of menu items.
+      properties:
+        id:
+          type: string
+          description: Category identifier.
+        name:
+          type: string
+          description: Category name.
+        items:
+          type: array
+          description: Items in the category.
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    MenuItem:
+      title: MenuItem
+      type: object
+      description: A single menu item.
+      properties:
+        id:
+          type: string
+          description: Item identifier.
+        name:
+          type: string
+          description: Item name.
+        description:
+          type: string
+          description: Item description.
+        price:
+          type: integer
+          description: Item price in the smallest currency unit (cents).
+        available:
+          type: boolean
+          description: Whether the item is currently available.
+    Order:
+      title: Order
+      type: object
+      description: An order to submit into the POS.
+      required:
+        - external_id
+        - items
+      properties:
+        external_id:
+          type: string
+          description: Identifier of the order in the originating ordering platform.
+        order_source:
+          type: string
+          description: Ordering platform the order originated from.
+        group_order:
+          type: boolean
+          description: Whether this is a group order placed by multiple individuals together.
+          default: false
+        customer:
+          $ref: '#/components/schemas/Customer'
+        items:
+          type: array
+          description: Line items in the order.
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        totals:
+          $ref: '#/components/schemas/OrderTotals'
+        payment_status:
+          type: string
+          description: Payment status of the order.
+          enum:
+            - paid
+            - unpaid
+            - refunded
+    Customer:
+      title: Customer
+      type: object
+      description: Customer who placed the order.
+      properties:
+        name:
+          type: string
+          description: Customer name.
+        phone:
+          type: string
+          description: Customer phone number in E.164 format.
+    OrderItem:
+      title: OrderItem
+      type: object
+      description: A single line item in an order.
+      properties:
+        id:
+          type: string
+          description: Menu item identifier.
+        name:
+          type: string
+          description: Item name.
+        quantity:
+          type: integer
+          description: Quantity ordered.
+        price:
+          type: integer
+          description: Unit price in the smallest currency unit (cents).
+    OrderTotals:
+      title: OrderTotals
+      type: object
+      description: Monetary totals for an order, in the smallest currency unit (cents).
+      properties:
+        subtotal:
+          type: integer
+          description: Sum of line items before tax.
+        tax:
+          type: integer
+          description: Tax amount.
+        total:
+          type: integer
+          description: Grand total charged.
+    OrderConfirmation:
+      title: OrderConfirmation
+      type: object
+      description: Confirmation that an order was accepted into the POS.
+      properties:
+        order_id:
+          type: string
+          description: ItsaCheckmate order identifier.
+        external_id:
+          type: string
+          description: Originating platform order identifier.
+        status:
+          type: string
+          description: Order acceptance status.
+          enum:
+            - accepted
+            - rejected
+            - pending
+        pos_reference:
+          type: string
+          description: Reference assigned by the POS system.

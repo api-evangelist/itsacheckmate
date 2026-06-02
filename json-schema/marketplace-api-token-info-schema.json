@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-schema/marketplace-api-token-info-schema.json",
+  "title": "TokenInfo",
+  "description": "Introspection details for the current access token.",
+  "type": "object",
+  "properties": {
+    "resource_owner_id": {
+      "type": "string",
+      "description": "Identifier of the location that owns the token."
+    },
+    "scope": {
+      "type": "array",
+      "description": "Granted scopes.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Seconds remaining before the access token expires."
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "Unix epoch seconds when the token was created."
+    }
+  }
+}

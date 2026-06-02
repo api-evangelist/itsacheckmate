@@ -41,13 +41,29 @@ apis:
       - Menus
       - Orders
       - Locations
+    baseURL: https://sandbox-api.itsacheckmate.com
     properties:
+      - type: OpenAPI
+        url: openapi/itsacheckmate-marketplace-api.yml
       - type: Documentation
         url: https://openapi-itsacheckmate.readme.io/reference/getting-started
       - type: GettingStarted
         url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+      - type: Postman
+        url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
+      - type: Webhook
+        title: Update Notice Webhook
+        url: https://openapi-itsacheckmate.readme.io/reference/update-notice
       - type: LLMsTxt
         url: https://openapi-itsacheckmate.readme.io/llms.txt
+      - type: NaftikoCapability
+        url: capabilities/marketplace-api-oauth.yaml
+      - type: NaftikoCapability
+        url: capabilities/marketplace-api-locations.yaml
+      - type: NaftikoCapability
+        url: capabilities/marketplace-api-menus.yaml
+      - type: NaftikoCapability
+        url: capabilities/marketplace-api-orders.yaml
 common:
   - type: Website
     url: https://www.itsacheckmate.com/
@@ -65,6 +81,18 @@ common:
     url: https://www.linkedin.com/company/itsacheckmate
   - type: LLMsTxt
     url: https://openapi-itsacheckmate.readme.io/llms.txt
+  - type: Rules
+    url: rules/itsacheckmate-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/itsacheckmate-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/itsacheckmate-context.jsonld
+  - type: Plans
+    url: plans/itsacheckmate-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/itsacheckmate-rate-limits.yml
+  - type: FinOps
+    url: finops/itsacheckmate-finops.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

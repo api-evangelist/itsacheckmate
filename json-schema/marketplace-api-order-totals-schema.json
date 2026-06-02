@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-schema/marketplace-api-order-totals-schema.json",
+  "title": "OrderTotals",
+  "description": "Monetary totals for an order, in the smallest currency unit (cents).",
+  "type": "object",
+  "properties": {
+    "subtotal": {
+      "type": "integer",
+      "description": "Sum of line items before tax."
+    },
+    "tax": {
+      "type": "integer",
+      "description": "Tax amount."
+    },
+    "total": {
+      "type": "integer",
+      "description": "Grand total charged."
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-menu-structure.json",
+  "name": "Menu",
+  "description": "A location menu as published to one ordering platform.",
+  "type": "object",
+  "properties": {
+    "order_source": {
+      "type": "string",
+      "description": "Ordering platform this menu is published to."
+    },
+    "location_id": {
+      "type": "string",
+      "description": "Identifier of the location the menu belongs to."
+    },
+    "categories": {
+      "type": "array",
+      "description": "Menu categories.",
+      "items": {
+        "title": "MenuCategory",
+        "type": "object",
+        "description": "A category grouping of menu items.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Category identifier."
+          },
+          "name": {
+            "type": "string",
+            "description": "Category name."
+          },
+          "items": {
+            "type": "array",
+            "description": "Items in the category.",
+            "items": {
+              "title": "MenuItem",
+              "type": "object",
+              "description": "A single menu item.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Item identifier."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Item name."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Item description."
+                },
+                "price": {
+                  "type": "int64",
+                  "description": "Item price in the smallest currency unit (cents)."
+                },
+                "available": {
+                  "type": "boolean",
+                  "description": "Whether the item is currently available."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

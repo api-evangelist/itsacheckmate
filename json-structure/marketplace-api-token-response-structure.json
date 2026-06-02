@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-token-response-structure.json",
+  "name": "TokenResponse",
+  "description": "Issued access and refresh tokens.",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "Short-lived scoped access token."
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Token used to obtain a new access token."
+    },
+    "token_type": {
+      "type": "string",
+      "description": "Token type, always Bearer."
+    },
+    "expires_in": {
+      "type": "int64",
+      "description": "Lifetime of the access token in seconds. Defaults to 86400 (24 hours)."
+    },
+    "scope": {
+      "type": "string",
+      "description": "Space-delimited list of granted scopes."
+    }
+  }
+}

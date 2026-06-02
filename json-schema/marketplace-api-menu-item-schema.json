@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-schema/marketplace-api-menu-item-schema.json",
+  "title": "MenuItem",
+  "description": "A single menu item.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Item identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Item name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Item description."
+    },
+    "price": {
+      "type": "integer",
+      "description": "Item price in the smallest currency unit (cents)."
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether the item is currently available."
+    }
+  }
+}

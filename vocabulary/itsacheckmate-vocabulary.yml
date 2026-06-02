@@ -1,0 +1,174 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "ItsaCheckmate"
+  description: >-
+    Unified vocabulary for the ItsaCheckmate (Checkmate) restaurant middleware
+    platform, mapping the operational dimension (Marketplace for Developers API
+    v2.2 OpenAPI) to the capability dimension (Naftiko capabilities) across
+    token management, location activation, menu retrieval, and order injection
+    between ordering platforms and POS systems.
+  created: "2026-06-02"
+  modified: "2026-06-02"
+
+operational:
+  apis:
+    - name: "ItsaCheckmate Marketplace for Developers API"
+      namespace: "marketplace-api"
+      version: "2.2"
+      baseUrl: "https://sandbox-api.itsacheckmate.com"
+      status: active
+  resources:
+    - name: tokens
+      api: "marketplace-api"
+      actions: [create, retrieve]
+    - name: locations
+      api: "marketplace-api"
+      actions: [activate, retrieve]
+    - name: menus
+      api: "marketplace-api"
+      actions: [retrieve]
+    - name: orders
+      api: "marketplace-api"
+      actions: [submit]
+  actions:
+    - name: create
+      httpMethod: POST
+      pattern: write
+    - name: retrieve
+      httpMethod: GET
+      pattern: read
+    - name: activate
+      httpMethod: GET
+      pattern: write
+    - name: submit
+      httpMethod: POST
+      pattern: write
+  schemas:
+    auth:
+      - TokenRequest
+      - TokenResponse
+      - TokenInfo
+    location:
+      - Location
+      - Address
+      - ActivationResult
+    menu:
+      - Menu
+      - MenuCategory
+      - MenuItem
+    order:
+      - Order
+      - OrderItem
+      - OrderTotals
+      - Customer
+      - OrderConfirmation
+  parameters:
+    identifiers:
+      - order_source
+    headers:
+      - accept
+      - Authorization
+  enums:
+    grant_types:
+      - authorization_code
+      - refresh_token
+    payment_statuses:
+      - paid
+      - unpaid
+      - refunded
+    order_statuses:
+      - accepted
+      - rejected
+      - pending
+    scopes:
+      - menus
+      - orders
+  authentication:
+    schemes:
+      - name: bearerAuth
+        type: http
+        scheme: bearer
+        usedBy: ["marketplace-api"]
+        notes: "OAuth-style scoped access token, 24-hour default expiry, with refresh token."
+
+capability:
+  workflows:
+    - name: "ItsaCheckmate — OAuth"
+      file: capabilities/marketplace-api-oauth.yaml
+      description: "Token issuance and refresh."
+      apis: ["marketplace-api"]
+      toolCount: 2
+      personas: [Integration Partner]
+      domains: [Authentication]
+    - name: "ItsaCheckmate — Locations"
+      file: capabilities/marketplace-api-locations.yaml
+      description: "Location activation and detail retrieval."
+      apis: ["marketplace-api"]
+      toolCount: 2
+      personas: [Integration Partner]
+      domains: [Locations]
+    - name: "ItsaCheckmate — Menus"
+      file: capabilities/marketplace-api-menus.yaml
+      description: "Menu retrieval per ordering platform."
+      apis: ["marketplace-api"]
+      toolCount: 1
+      personas: [Menu Manager]
+      domains: [Menus]
+    - name: "ItsaCheckmate — Orders"
+      file: capabilities/marketplace-api-orders.yaml
+      description: "Standard and group order injection into the POS."
+      apis: ["marketplace-api"]
+      toolCount: 1
+      personas: [Order Integrator]
+      domains: [Orders]
+  personas:
+    - id: integration-partner
+      name: Integration Partner
+      description: Technology partner building one integration across many POS systems.
+      workflows: [capabilities/marketplace-api-oauth.yaml, capabilities/marketplace-api-locations.yaml]
+    - id: menu-manager
+      name: Menu Manager
+      description: Syncs and reads menus across ordering platforms.
+      workflows: [capabilities/marketplace-api-menus.yaml]
+    - id: order-integrator
+      name: Order Integrator
+      description: Injects delivery and ordering-channel orders into the restaurant POS.
+      workflows: [capabilities/marketplace-api-orders.yaml]
+  domains:
+    - name: Authentication
+      resources: [tokens]
+    - name: Locations
+      resources: [locations]
+    - name: Menus
+      resources: [menus]
+    - name: Orders
+      resources: [orders]
+  namespaces:
+    - consumed: "marketplace-api-orders"
+      rest: "marketplace-api-orders-rest"
+      mcp: "marketplace-api-orders-mcp"
+      restPort: 8080
+      mcpPort: 9090
+  binds:
+    - key: ITSACHECKMATE_ACCESS_TOKEN
+      description: ItsaCheckmate Marketplace API scoped bearer access token.
+      workflows: all
+
+crossReference:
+  - resource: tokens
+    operations: [createToken, getTokenDetails]
+    workflows: [capabilities/marketplace-api-oauth.yaml]
+    personas: [integration-partner]
+  - resource: locations
+    operations: [activateLocation, getLocation]
+    workflows: [capabilities/marketplace-api-locations.yaml]
+    personas: [integration-partner]
+  - resource: menus
+    operations: [getMenu]
+    workflows: [capabilities/marketplace-api-menus.yaml]
+    personas: [menu-manager]
+  - resource: orders
+    operations: [submitOrder]
+    workflows: [capabilities/marketplace-api-orders.yaml]
+    personas: [order-integrator]

@@ -1,0 +1,8 @@
+{
+  "resource_owner_id": "id_500123",
+  "scope": [
+    "menus orders"
+  ],
+  "expires_in": 86400,
+  "created_at": 1718153645
+}

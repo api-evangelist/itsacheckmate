@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/json-structure/marketplace-api-order-item-structure.json",
+  "name": "OrderItem",
+  "description": "A single line item in an order.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Menu item identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Item name."
+    },
+    "quantity": {
+      "type": "int64",
+      "description": "Quantity ordered."
+    },
+    "price": {
+      "type": "int64",
+      "description": "Unit price in the smallest currency unit (cents)."
+    }
+  }
+}

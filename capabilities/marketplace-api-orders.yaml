@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ItsaCheckmate Marketplace for Developers API — Orders
+  description: 'Orders surface of the ItsaCheckmate Marketplace for Developers API. 1 operations. Lead operation: ItsaCheckmate Submit Order. Self-contained Naftiko capability covering one ItsaCheckmate business surface.'
+  tags:
+  - ItsaCheckmate
+  - Orders
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    ITSACHECKMATE_ACCESS_TOKEN: ITSACHECKMATE_ACCESS_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: marketplace-api-orders
+    baseUri: https://sandbox-api.itsacheckmate.com
+    description: ItsaCheckmate Marketplace for Developers API — Orders business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.ITSACHECKMATE_ACCESS_TOKEN}}'
+    resources:
+    - name: orders-order-source
+      path: /api/v2/orders/{order_source}
+      operations:
+      - name: submitOrder
+        method: POST
+        description: ItsaCheckmate Submit Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_source
+          in: path
+          type: string
+          required: true
+          description: Name of the ordering platform the order originates from.
+        - name: accept
+          in: header
+          type: string
+          required: false
+          description: Response media type. Defaults to application/json.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request payload.
+  exposes:
+  - type: rest
+    namespace: marketplace-api-orders-rest
+    port: 8080
+    description: REST adapter for ItsaCheckmate Marketplace for Developers API — Orders. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/orders-order-source
+      name: orders-order-source
+      description: REST surface for orders-order-source.
+      operations:
+      - method: POST
+        name: submitOrder
+        description: ItsaCheckmate Submit Order
+        call: marketplace-api-orders.submitOrder
+        with:
+          order_source: rest.order_source
+          accept: rest.accept
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketplace-api-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ItsaCheckmate Marketplace for Developers API — Orders. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: submit-order
+      description: ItsaCheckmate Submit Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketplace-api-orders.submitOrder
+      with:
+        order_source: tools.order_source
+        accept: tools.accept
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
