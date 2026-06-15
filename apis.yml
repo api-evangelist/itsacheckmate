@@ -1,16 +1,12 @@
 aid: itsacheckmate
 name: ItsaCheckmate
 description: >-
-  ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale
-  systems to delivery marketplaces and ordering channels, providing two-way
-  integration, menu management, and consolidated reporting across 50+ POS
-  systems and 100+ ordering platforms for tens of thousands of restaurant
-  locations. Through its Marketplace for Developers, Checkmate offers a
-  self-service open REST API that lets technology partners build a single
-  integration to read and write menus, orders, and locations across many POS
-  systems. The API uses OAuth-style token authentication with short-lived,
-  scoped access and refresh tokens, ready-to-use Postman collections, and an
-  llms.txt index for AI agents.
+  ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale systems to delivery marketplaces and
+  ordering channels, providing two-way integration, menu management, and consolidated reporting across 50+ POS systems
+  and 100+ ordering platforms for tens of thousands of restaurant locations. Through its Marketplace for Developers,
+  Checkmate offers a self-service open REST API that lets technology partners build a single integration to read and
+  write menus, orders, and locations across many POS systems. The API uses OAuth-style token authentication with
+  short-lived, scoped access and refresh tokens, ready-to-use Postman collections, and an llms.txt index for AI agents.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -29,11 +25,9 @@ apis:
   - aid: itsacheckmate:rest-api
     name: Marketplace for Developers API
     description: >-
-      An open REST API that lets developers build one integration and read and
-      write menus, orders, and locations across 50+ POS systems. Resources
-      include location activation, menu retrieval, single and group order
-      submission, special hours and closures, and token management.
-      Authentication uses OAuth-style short-lived, scoped access tokens with
+      An open REST API that lets developers build one integration and read and write menus, orders, and locations across
+      50+ POS systems. Resources include location activation, menu retrieval, single and group order submission, special
+      hours and closures, and token management. Authentication uses OAuth-style short-lived, scoped access tokens with
       refresh tokens, defaulting to 24-hour token expiry.
     humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
     tags:
@@ -56,14 +50,6 @@ apis:
         url: https://openapi-itsacheckmate.readme.io/reference/update-notice
       - type: LLMsTxt
         url: https://openapi-itsacheckmate.readme.io/llms.txt
-      - type: NaftikoCapability
-        url: capabilities/marketplace-api-oauth.yaml
-      - type: NaftikoCapability
-        url: capabilities/marketplace-api-locations.yaml
-      - type: NaftikoCapability
-        url: capabilities/marketplace-api-menus.yaml
-      - type: NaftikoCapability
-        url: capabilities/marketplace-api-orders.yaml
 common:
   - type: Website
     url: https://www.itsacheckmate.com/

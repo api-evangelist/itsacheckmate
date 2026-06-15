@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ItsaCheckmate Marketplace for Developers API",
+    "version": "2.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Create or Refresh Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-api.itsacheckmate.com/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues an access token and refresh token using the authorization_code grant (initial issuance) or the refresh_token grant (renewal). Access tokens expire in 24 hours by default. Tokens are scoped; the menus scope is required to call the Get Menu endpoint."
+        },
+        {
+          "info": {
+            "name": "ItsaCheckmate Get Token Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/oauth/token/info",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns information about the current access token, including expiration and granted scopes, so a partner can determine when to refresh credentials before the token expires."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Activate Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/activate",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Activates the location associated with the access token. This must be the first call made after generating an access token; until the location is activated, none of the Menu or Order operations can be accessed."
+        },
+        {
+          "info": {
+            "name": "ItsaCheckmate Get Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/get_location",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the details of the location associated with the access token, including its time zone in TZ database format. The location does not have to be verified first in order to call this operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Menus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Get Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/menu/:order_source",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "params": [
+              {
+                "name": "order_source",
+                "value": "doordash",
+                "type": "path",
+                "description": "Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the menu for the location as published to a specific ordering platform. Requires an access token issued with the menus scope, and the location has to be verified first."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Submit Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/orders/:order_source",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "params": [
+              {
+                "name": "order_source",
+                "value": "doordash",
+                "type": "path",
+                "description": "Name of the ordering platform the order originates from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submits a standard order or a group order into the location's POS system for a specific ordering platform. A group order, indicated by the group_order flag, is an order placed by multiple individuals together. The location must be verified before orders can be submitted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

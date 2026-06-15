@@ -1,0 +1,1213 @@
+{
+  "item": [
+    {
+      "id": "bd4bfe7d-c8bb-4645-a8be-304ae7384b65",
+      "name": "OAuth",
+      "description": {
+        "content": "Token issuance, refresh, and introspection.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "662113b5-f7f9-40df-8ee9-19393c0f5d0e",
+          "name": "ItsaCheckmate Create or Refresh Token",
+          "request": {
+            "name": "ItsaCheckmate Create or Refresh Token",
+            "description": {
+              "content": "Issues an access token and refresh token using the authorization_code grant (initial issuance) or the refresh_token grant (renewal). Access tokens expire in 24 hours by default. Tokens are scoped; the menus scope is required to call the Get Menu endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"code\": \"<string>\",\n  \"refresh_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4bdb49a0-e85d-4b5b-a1a7-28feb3aab670",
+              "name": "Token issued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"authorization_code\",\n  \"client_id\": \"ck_app_a1b2c3\",\n  \"client_secret\": \"ck_secret_d4e5f6\",\n  \"redirect_uri\": \"https://partner.example.com/oauth/callback\",\n  \"code\": \"one_time_code_123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"at_a1b2c3d4e5f6\",\n  \"refresh_token\": \"rt_g7h8i9j0k1l2\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 86400,\n  \"scope\": \"menus orders\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59646868-ed00-4466-89c0-4ba3928bf9f2",
+              "name": "Invalid client credentials or grant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"authorization_code\",\n  \"client_id\": \"ck_app_a1b2c3\",\n  \"client_secret\": \"ck_secret_d4e5f6\",\n  \"redirect_uri\": \"https://partner.example.com/oauth/callback\",\n  \"code\": \"one_time_code_123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c8bcb7a-258d-4a15-bc0e-170d3d39da36",
+          "name": "ItsaCheckmate Get Token Details",
+          "request": {
+            "name": "ItsaCheckmate Get Token Details",
+            "description": {
+              "content": "Returns information about the current access token, including expiration and granted scopes, so a partner can determine when to refresh credentials before the token expires.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82833182-37c8-4ddc-aef6-16d2039a0107",
+              "name": "Token details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resource_owner_id\": \"loc_500123\",\n  \"scope\": [\n    \"menus\",\n    \"orders\"\n  ],\n  \"expires_in\": 84210,\n  \"created_at\": 1718153645\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "986a25cf-a909-417f-81a9-ef9e7ec10161",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a7420794-e1b4-464c-9c9f-29ec3dada6a6",
+      "name": "Locations",
+      "description": {
+        "content": "Location activation and location detail retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e8fd114-0913-43d3-84d8-3a8137f2a7ec",
+          "name": "ItsaCheckmate Activate Location",
+          "request": {
+            "name": "ItsaCheckmate Activate Location",
+            "description": {
+              "content": "Activates the location associated with the access token. This must be the first call made after generating an access token; until the location is activated, none of the Menu or Order operations can be accessed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a250803-800f-4880-92d9-894a889b0572",
+              "name": "Location activated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"activated\": true,\n  \"location_id\": \"loc_500123\",\n  \"message\": \"Location activated successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48a42b1d-12fe-4b07-9d73-a297e17878d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c8802c9-c6e1-4007-a5ca-7f3e0d20c5f8",
+          "name": "ItsaCheckmate Get Location",
+          "request": {
+            "name": "ItsaCheckmate Get Location",
+            "description": {
+              "content": "Returns the details of the location associated with the access token, including its time zone in TZ database format. The location does not have to be verified first in order to call this operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "get_location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4138f28-b822-4a7d-b804-5c5e4d7e758a",
+              "name": "Location detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "get_location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"loc_500123\",\n  \"name\": \"Downtown Diner\",\n  \"timezone\": \"America/New_York\",\n  \"verified\": true,\n  \"pos_system\": \"Toast\",\n  \"address\": {\n    \"street\": \"123 Main St\",\n    \"city\": \"New York\",\n    \"state\": \"NY\",\n    \"zip\": \"10001\",\n    \"country\": \"US\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03956ceb-7723-4744-ae4b-337e3792609e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "get_location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03d6e2e3-48a4-453b-ae86-134290f78b9c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "get_location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cecab57e-295a-4f13-9407-6c654fefcba0",
+      "name": "Menus",
+      "description": {
+        "content": "Menu retrieval per ordering platform.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "068e14f7-cdc7-499c-8cc4-e927383dad69",
+          "name": "ItsaCheckmate Get Menu",
+          "request": {
+            "name": "ItsaCheckmate Get Menu",
+            "description": {
+              "content": "Returns the menu for the location as published to a specific ordering platform. Requires an access token issued with the menus scope, and the location has to be verified first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "menu",
+                ":order_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_source",
+                  "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d68db057-d379-4b9d-a841-2daa663bd6d9",
+              "name": "Menu for the ordering platform",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_source\": \"doordash\",\n  \"location_id\": \"loc_500123\",\n  \"categories\": [\n    {\n      \"id\": \"cat_1001\",\n      \"name\": \"Burgers\",\n      \"items\": [\n        {\n          \"id\": \"item_2001\",\n          \"name\": \"Classic Cheeseburger\",\n          \"description\": \"Quarter-pound beef patty with cheddar.\",\n          \"price\": 1099,\n          \"available\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "285e32ff-071a-45a3-be6b-9ea0f11172de",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8eea535-2fac-4a2d-ae80-0aa5509cd2f6",
+              "name": "Forbidden — token missing the menus scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "698b916b-798e-48d2-b15f-675aa0a86cf2",
+      "name": "Orders",
+      "description": {
+        "content": "Standard and group order submission into the POS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "54393906-d6de-418f-ba35-f9800a434661",
+          "name": "ItsaCheckmate Submit Order",
+          "request": {
+            "name": "ItsaCheckmate Submit Order",
+            "description": {
+              "content": "Submits a standard order or a group order into the location's POS system for a specific ordering platform. A group order, indicated by the group_order flag, is an order placed by multiple individuals together. The location must be verified before orders can be submitted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "orders",
+                ":order_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_source",
+                  "description": "(Required) Name of the ordering platform the order originates from."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<integer>\"\n    }\n  ],\n  \"order_source\": \"<string>\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"totals\": {\n    \"subtotal\": \"<integer>\",\n    \"tax\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"payment_status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efb11c3c-31c6-498e-b7bb-8e8174619e81",
+              "name": "Order accepted into the POS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_id\": \"ord_700456\",\n  \"external_id\": \"dd_98765\",\n  \"status\": \"accepted\",\n  \"pos_reference\": \"TOAST-A1B2C3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "200ef58c-2136-4cd2-9fb5-6890371157b0",
+              "name": "Bad request — invalid order payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5be05a9b-b072-43ec-8676-6ac13940f8d2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a906b9a8-851a-4bf3-9aaf-7775e90a1cea",
+              "name": "Forbidden — location not verified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-api.itsacheckmate.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ecbffa19-6de5-446d-b303-b2eb5231dbdd",
+    "name": "ItsaCheckmate Marketplace for Developers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.\nAuthentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.\nEndpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.\n\nContact Support:\n Name: ItsaCheckmate Marketplace for Developers",
+      "type": "text/plain"
+    }
+  }
+}
