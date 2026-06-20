@@ -8,7 +8,7 @@ description: >-
   write menus, orders, and locations across many POS systems. The API uses OAuth-style token authentication with
   short-lived, scoped access and refresh tokens, ready-to-use Postman collections, and an llms.txt index for AI agents.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Restaurant
   - Point Of Sale
