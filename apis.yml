@@ -45,10 +45,10 @@ apis:
         url: https://openapi-itsacheckmate.readme.io/reference/getting-started
       - type: Postman
         url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
-      - type: Webhook
+      - type: Webhooks
         title: Update Notice Webhook
         url: https://openapi-itsacheckmate.readme.io/reference/update-notice
-      - type: LLMsTxt
+      - type: LlmsText
         url: https://openapi-itsacheckmate.readme.io/llms.txt
 common:
   - type: Website
@@ -65,7 +65,7 @@ common:
     url: https://www.itsacheckmate.com/blog
   - type: LinkedIn
     url: https://www.linkedin.com/company/itsacheckmate
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://openapi-itsacheckmate.readme.io/llms.txt
   - type: Rules
     url: rules/itsacheckmate-spectral-rules.yml
