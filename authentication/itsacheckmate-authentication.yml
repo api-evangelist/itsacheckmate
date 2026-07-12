@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/itsacheckmate-marketplace-api.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth-style scoped access token issued by /oauth/token.
+  sources:
+  - openapi/itsacheckmate-marketplace-api.yml
