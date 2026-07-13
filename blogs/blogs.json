@@ -2,19 +2,14 @@
   "repo": "itsacheckmate",
   "feeds": [
     {
-      "source": "https://www.itsacheckmate.com/blog",
-      "feed_url": "",
-      "saved": 2,
-      "method": "agent-scrape"
-    },
-    {
       "source": "https://support.itsacheckmate.com/hc/en-us",
-      "feed_url": "",
+      "feed_url": "https://support.itsacheckmate.com/hc/en-us",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
   "post_count": 2,
-  "fetched": "2026-06-27T12:49:29Z",
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }

@@ -1,15 +1,21 @@
-# ItsaCheckmate Marketplace for Developers API Spectral Ruleset
-# Enforces conventions observed in the ItsaCheckmate Marketplace API OpenAPI specification:
-# - Title prefix "ItsaCheckmate ..."
-# - /api/v2 versioned resource paths plus /oauth token endpoints
-# - snake_case parameters and schema properties
-# - camelCase operationIds with verb prefixes
-# - OAuth-style bearer (scoped access token) security
-# - Title Case tags and operation summaries
-extends: []
+# itsacheckmate — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on itsacheckmate.com
+#   - operationid-casing: camel @ 100% (n=6)
+#   - schema-names-casing: pascal @ 100% (n=14)
+#   - schema-properties-casing: snake @ 100% (n=60)
+#   - operation-security-required: 5/6 ops declare per-op security
+#   - operation-documents-401: 100% adherence
+#   - merge: kept 34 existing, added 4 measured, upgraded 0
+#   - added: schema-names-casing, schema-properties-casing, operation-security-required, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # ── INFO / METADATA ────────────────────────────────────────────────
   info-title-required:
     description: API must have a title.
     given: $.info
@@ -24,7 +30,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^ItsaCheckmate'
+        match: ^ItsaCheckmate
   info-description-required:
     description: API must have a non-trivial description.
     given: $.info
@@ -46,8 +52,6 @@ rules:
     then:
       field: contact
       function: truthy
-
-  # ── OPENAPI VERSION ────────────────────────────────────────────────
   openapi-version-3-1:
     description: Specs should target OpenAPI 3.1.x.
     given: $.openapi
@@ -55,9 +59,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^3\.1\.'
-
-  # ── SERVERS ────────────────────────────────────────────────────────
+        match: ^3\.1\.
   servers-defined:
     description: At least one server must be defined.
     given: $.servers
@@ -73,7 +75,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^https://'
+        match: ^https://
   server-itsacheckmate-host:
     description: Server should be an itsacheckmate.com host.
     given: $.servers[*].url
@@ -81,9 +83,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: 'itsacheckmate\.com'
-
-  # ── PATHS — NAMING CONVENTIONS ─────────────────────────────────────
+        match: itsacheckmate\.com
   paths-version-prefix:
     description: Resource paths should be versioned under /api/v2 (OAuth token endpoints are the exception).
     given: $.paths[?(!@property.match(/^\/oauth/))]~
@@ -91,7 +91,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^/api/v2/'
+        match: ^/api/v2/
   paths-snake-case:
     description: Path segments must be snake_case or kebab-case (no camelCase or PascalCase).
     given: $.paths[*]~
@@ -99,7 +99,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^(/[a-z0-9_\-]+|/\{[a-z0-9_]+\})*/?$'
+        match: ^(/[a-z0-9_\-]+|/\{[a-z0-9_]+\})*/?$
   paths-no-trailing-slash:
     description: Paths must not end with a trailing slash.
     given: $.paths[*]~
@@ -107,7 +107,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: '.+/$'
+        notMatch: .+/$
   paths-no-query-string:
     description: Paths must not contain query strings.
     given: $.paths[*]~
@@ -115,9 +115,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: '\?'
-
-  # ── OPERATIONS ─────────────────────────────────────────────────────
+        notMatch: \?
   operation-operationid-required:
     description: Every operation must have an operationId.
     given: $.paths[*][get,post,put,patch,delete]
@@ -132,7 +130,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^(list|get|retrieve|create|update|put|delete|submit|activate|refresh|fetch)[A-Za-z0-9]*$'
+        match: ^(list|get|retrieve|create|update|put|delete|submit|activate|refresh|fetch)[A-Za-z0-9]*$
   operation-summary-required:
     description: Every operation must have a summary.
     given: $.paths[*][get,post,put,patch,delete]
@@ -147,7 +145,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^ItsaCheckmate'
+        match: ^ItsaCheckmate
   operation-tags-required:
     description: Every operation must be tagged.
     given: $.paths[*][get,post,put,patch,delete]
@@ -155,8 +153,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # ── TAGS ───────────────────────────────────────────────────────────
   global-tags-defined:
     description: A global tags array should be defined.
     given: $
@@ -178,9 +174,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$'
-
-  # ── PARAMETERS ─────────────────────────────────────────────────────
+        match: ^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$
   parameter-description-required:
     description: Parameters should have descriptions.
     given: $..parameters[*]
@@ -195,9 +189,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^[a-z][a-z0-9_]*$'
-
-  # ── REQUEST BODIES ─────────────────────────────────────────────────
+        match: ^[a-z][a-z0-9_]*$
   request-body-json:
     description: Request bodies should accept application/json.
     given: $.paths[*][post,put,patch].requestBody.content
@@ -205,8 +197,6 @@ rules:
     then:
       field: application/json
       function: truthy
-
-  # ── RESPONSES ──────────────────────────────────────────────────────
   response-success-required:
     description: Every operation must define at least one 2xx response.
     given: $.paths[*][get,post,put,patch,delete].responses
@@ -217,7 +207,7 @@ rules:
         schema:
           type: object
           patternProperties:
-            '^2[0-9][0-9]$': {}
+            ^2[0-9][0-9]$: {}
           minProperties: 1
   response-description-required:
     description: Responses must have descriptions.
@@ -233,8 +223,6 @@ rules:
     then:
       field: '401'
       function: truthy
-
-  # ── SCHEMAS — PROPERTY NAMING ──────────────────────────────────────
   schema-property-snake-case:
     description: Schema properties should be snake_case.
     given: $.components.schemas[*].properties[*]~
@@ -242,7 +230,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: '^[a-z][a-z0-9_]*$'
+        match: ^[a-z][a-z0-9_]*$
   schema-title-required:
     description: Top-level schemas should declare a title.
     given: $.components.schemas[*]
@@ -256,8 +244,6 @@ rules:
     severity: info
     then:
       function: defined
-
-  # ── SECURITY ───────────────────────────────────────────────────────
   security-schemes-defined:
     description: Security schemes must be defined.
     given: $.components.securitySchemes
@@ -271,8 +257,6 @@ rules:
     then:
       field: bearerAuth
       function: truthy
-
-  # ── HTTP METHOD CONVENTIONS ────────────────────────────────────────
   get-no-request-body:
     description: GET operations must not declare a request body.
     given: $.paths[*].get
@@ -286,4 +270,35 @@ rules:
     severity: info
     then:
       field: requestBody
+      function: truthy
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  operation-security-required:
+    description: Every operation should declare its security requirements.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: security
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
