@@ -51,6 +51,8 @@ apis:
       - type: LlmsText
         url: https://openapi-itsacheckmate.readme.io/llms.txt
 common:
+  - type: AgenticAccess
+    url: agentic-access/itsacheckmate-agentic-access.yml
   - type: DomainSecurity
     url: security/itsacheckmate-domain-security.yml
   - type: Authentication
