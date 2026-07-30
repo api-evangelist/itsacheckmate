@@ -8,7 +8,20 @@ description: >-
   write menus, orders, and locations across many POS systems. The API uses OAuth-style token authentication with
   short-lived, scoped access and refresh tokens, ready-to-use Postman collections, and an llms.txt index for AI agents.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/itsacheckmate.png
 tags:
   - Restaurant
   - Point Of Sale
@@ -22,34 +35,86 @@ created: '2026-06-02'
 modified: '2026-06-02'
 specificationVersion: '0.19'
 apis:
-  - aid: itsacheckmate:rest-api
-    name: Marketplace for Developers API
-    description: >-
-      An open REST API that lets developers build one integration and read and write menus, orders, and locations across
-      50+ POS systems. Resources include location activation, menu retrieval, single and group order submission, special
-      hours and closures, and token management. Authentication uses OAuth-style short-lived, scoped access tokens with
-      refresh tokens, defaulting to 24-hour token expiry.
-    humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
-    tags:
-      - Point Of Sale
-      - Menus
-      - Orders
-      - Locations
-    baseURL: https://sandbox-api.itsacheckmate.com
-    properties:
-      - type: OpenAPI
-        url: openapi/itsacheckmate-marketplace-api.yml
-      - type: Documentation
-        url: https://openapi-itsacheckmate.readme.io/reference/getting-started
-      - type: GettingStarted
-        url: https://openapi-itsacheckmate.readme.io/reference/getting-started
-      - type: Postman
-        url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
-      - type: Webhooks
-        title: Update Notice Webhook
-        url: https://openapi-itsacheckmate.readme.io/reference/update-notice
-      - type: LlmsText
-        url: https://openapi-itsacheckmate.readme.io/llms.txt
+- aid: itsacheckmate:itsacheckmate-locations-api
+  name: ItsaCheckmate Locations API
+  description: Location activation and location detail retrieval.
+  humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  baseURL: https://sandbox-api.itsacheckmate.com
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/itsacheckmate-locations-api-openapi.yml
+  - type: Documentation
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: GettingStarted
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: Postman
+    url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
+  - type: Webhooks
+    url: https://openapi-itsacheckmate.readme.io/reference/update-notice
+  - type: LlmsText
+    url: https://openapi-itsacheckmate.readme.io/llms.txt
+- aid: itsacheckmate:itsacheckmate-menus-api
+  name: ItsaCheckmate Menus API
+  description: Menu retrieval per ordering platform.
+  humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  baseURL: https://sandbox-api.itsacheckmate.com
+  tags:
+  - Menus
+  properties:
+  - type: OpenAPI
+    url: openapi/itsacheckmate-menus-api-openapi.yml
+  - type: Documentation
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: GettingStarted
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: Postman
+    url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
+  - type: Webhooks
+    url: https://openapi-itsacheckmate.readme.io/reference/update-notice
+  - type: LlmsText
+    url: https://openapi-itsacheckmate.readme.io/llms.txt
+- aid: itsacheckmate:itsacheckmate-oauth-api
+  name: ItsaCheckmate OAuth API
+  description: Token issuance, refresh, and introspection.
+  humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  baseURL: https://sandbox-api.itsacheckmate.com
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/itsacheckmate-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: GettingStarted
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: Postman
+    url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
+  - type: Webhooks
+    url: https://openapi-itsacheckmate.readme.io/reference/update-notice
+  - type: LlmsText
+    url: https://openapi-itsacheckmate.readme.io/llms.txt
+- aid: itsacheckmate:itsacheckmate-orders-api
+  name: ItsaCheckmate Orders API
+  description: Standard and group order submission into the POS.
+  humanURL: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  baseURL: https://sandbox-api.itsacheckmate.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/itsacheckmate-orders-api-openapi.yml
+  - type: Documentation
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: GettingStarted
+    url: https://openapi-itsacheckmate.readme.io/reference/getting-started
+  - type: Postman
+    url: https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api
+  - type: Webhooks
+    url: https://openapi-itsacheckmate.readme.io/reference/update-notice
+  - type: LlmsText
+    url: https://openapi-itsacheckmate.readme.io/llms.txt
 common:
   - type: AgenticAccess
     url: agentic-access/itsacheckmate-agentic-access.yml
