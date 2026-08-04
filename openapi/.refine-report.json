@@ -1,0 +1,20 @@
+{
+  "provider": "itsacheckmate",
+  "sources": [
+    "itsacheckmate-locations-api-openapi.yml",
+    "itsacheckmate-menus-api-openapi.yml",
+    "itsacheckmate-oauth-api-openapi.yml",
+    "itsacheckmate-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "itsacheckmate-locations-api-openapi.yml",
+    "itsacheckmate-menus-api-openapi.yml",
+    "itsacheckmate-oauth-api-openapi.yml",
+    "itsacheckmate-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
