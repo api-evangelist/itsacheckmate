@@ -1,0 +1,359 @@
+{
+  "item": [
+    {
+      "id": "c05d8793-f9a3-40fe-ab71-d36402e11884",
+      "name": "Orders",
+      "description": {
+        "content": "Standard and group order submission into the POS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8210b3ea-1d2b-4f8c-8ce1-8c1586925457",
+          "name": "ItsaCheckmate Submit Order",
+          "request": {
+            "name": "ItsaCheckmate Submit Order",
+            "description": {
+              "content": "Submits a standard order or a group order into the location's POS system for a specific ordering platform. A group order, indicated by the group_order flag, is an order placed by multiple individuals together. The location must be verified before orders can be submitted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "orders",
+                ":order_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_source",
+                  "description": "(Required) Name of the ordering platform the order originates from."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<integer>\"\n    }\n  ],\n  \"order_source\": \"<string>\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"totals\": {\n    \"subtotal\": \"<integer>\",\n    \"tax\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"payment_status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11701a7f-ebff-4972-89ea-26fc0765996b",
+              "name": "Order accepted into the POS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_id\": \"ord_700456\",\n  \"external_id\": \"dd_98765\",\n  \"status\": \"accepted\",\n  \"pos_reference\": \"TOAST-A1B2C3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "943f6d38-9629-48e5-bbad-0f77a4e1bde4",
+              "name": "Bad request — invalid order payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "348e4f32-fd73-4454-8756-50bc60c1bc81",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef93317b-62a8-47de-af5a-3575727b8056",
+              "name": "Forbidden — location not verified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "orders",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform the order originates from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_id\": \"dd_98765\",\n  \"order_source\": \"doordash\",\n  \"group_order\": false,\n  \"customer\": {\n    \"name\": \"Jane Smith\",\n    \"phone\": \"+15551234567\"\n  },\n  \"items\": [\n    {\n      \"id\": \"item_2001\",\n      \"name\": \"Classic Cheeseburger\",\n      \"quantity\": 2,\n      \"price\": 1099\n    }\n  ],\n  \"totals\": {\n    \"subtotal\": 2198,\n    \"tax\": 195,\n    \"total\": 2393\n  },\n  \"payment_status\": \"paid\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-api.itsacheckmate.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "67f98ad3-1db4-490c-be49-4e9e52c83d26",
+    "name": "ItsaCheckmate Marketplace for Developers Locations Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.\nAuthentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.\nEndpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.\n\nContact Support:\n Name: ItsaCheckmate Marketplace for Developers",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ItsaCheckmate Marketplace for Developers Locations API",
+    "version": "2.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Activate Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/activate",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Activates the location associated with the access token. This must be the first call made after generating an access token; until the location is activated, none of the Menu or Order operations can be accessed."
+        },
+        {
+          "info": {
+            "name": "ItsaCheckmate Get Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/get_location",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the details of the location associated with the access token, including its time zone in TZ database format. The location does not have to be verified first in order to call this operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

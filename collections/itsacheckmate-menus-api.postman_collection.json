@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "6be81301-b8e0-4043-9229-5f523f2aba44",
+      "name": "Menus",
+      "description": {
+        "content": "Menu retrieval per ordering platform.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aac1458d-6563-4755-ab27-9d19fa14f995",
+          "name": "ItsaCheckmate Get Menu",
+          "request": {
+            "name": "ItsaCheckmate Get Menu",
+            "description": {
+              "content": "Returns the menu for the location as published to a specific ordering platform. Requires an access token issued with the menus scope, and the location has to be verified first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "menu",
+                ":order_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_source",
+                  "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ef86b6b-cfa4-4c9f-b18e-b22d5513e5bf",
+              "name": "Menu for the ordering platform",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_source\": \"doordash\",\n  \"location_id\": \"loc_500123\",\n  \"categories\": [\n    {\n      \"id\": \"cat_1001\",\n      \"name\": \"Burgers\",\n      \"items\": [\n        {\n          \"id\": \"item_2001\",\n          \"name\": \"Classic Cheeseburger\",\n          \"description\": \"Quarter-pound beef patty with cheddar.\",\n          \"price\": 1099,\n          \"available\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8bf8c12-e2ee-474a-a890-966be0de7612",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2022ac76-6297-4c35-b9bb-006365227120",
+              "name": "Forbidden — token missing the menus scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "menu",
+                    ":order_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_source",
+                      "description": "(Required) Name of the ordering platform (e.g. doordash, ubereats, grubhub)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Response media type. Defaults to application/json.",
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox-api.itsacheckmate.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa149ede-96ca-4e9b-af1f-a3dc41d787d3",
+    "name": "ItsaCheckmate Marketplace for Developers Locations Menus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.\nAuthentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.\nEndpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.\n\nContact Support:\n Name: ItsaCheckmate Marketplace for Developers",
+      "type": "text/plain"
+    }
+  }
+}

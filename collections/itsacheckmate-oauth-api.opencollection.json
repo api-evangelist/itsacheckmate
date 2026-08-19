@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ItsaCheckmate Marketplace for Developers Locations OAuth API",
+    "version": "2.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Create or Refresh Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-api.itsacheckmate.com/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues an access token and refresh token using the authorization_code grant (initial issuance) or the refresh_token grant (renewal). Access tokens expire in 24 hours by default. Tokens are scoped; the menus scope is required to call the Get Menu endpoint."
+        },
+        {
+          "info": {
+            "name": "ItsaCheckmate Get Token Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox-api.itsacheckmate.com/oauth/token/info",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns information about the current access token, including expiration and granted scopes, so a partner can determine when to refresh credentials before the token expires."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

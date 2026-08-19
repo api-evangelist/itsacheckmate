@@ -1,0 +1,24 @@
+# Reporting Api Raw Data Documentation
+
+> Documentation for Reporting Api Raw Data
+
+## API Reference
+- [Welcome to Marketplace for Developers by ItsaCheckmate!](https://openapi-itsacheckmate.readme.io/reference/getting-started.md): This page will help you get started building and we will have you up and running in a jiffy!
+- [Bulk Special Case - Authorisation Request](https://openapi-itsacheckmate.readme.io/reference/bulk-special-case-authorisation-request.md)
+- [Get Token / Refresh Token](https://openapi-itsacheckmate.readme.io/reference/refresh-token.md): In addition to your integration specific credentials, you will also need the short-lived one-time-use code described above in the "Authorisation Request" section in order to get the the initial Access Token. The Access Token expires in 24 hours by default. Before your Access Token has expired, you can use this API to issue a new Access Token using your Refresh Token. The Refresh Token must be the same that you received in the Get Access Token API call Response. This will generate a new set of Access Token and Refresh Token for you. Save them securely in your application against the user. Every-time you refresh a token, you will have to use the latest set of Access and Refresh Tokens.
+- [Get Token Details](https://openapi-itsacheckmate.readme.io/reference/get-token-details.md): This API lets you get the details for your access token. You can use this API to track the token expiry time and call the Refresh token API before the token expires to generate a new access token.
+- [Get Location](https://openapi-itsacheckmate.readme.io/reference/locations.md): This API will return the details of your location for which you have requested access via the Authorization request. The Time Zone of the Location in included as a TZ database name (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The location does not have to be verified first in order to call this API.
+- [Activate Location](https://openapi-itsacheckmate.readme.io/reference/activate-authorization.md): Unless you activate your location, you'll not able to access any of the Menu or Order API. This is the very first API call that you need to make after you've successfully generated your access token and got the location details.
+- [Get Menu](https://openapi-itsacheckmate.readme.io/reference/getting-started-with-your-api-1.md): Returns the latest menu for your location. The location has to be verified first in order to call this API. You can only access this API if you have an access token issued with the scope menus.
+- [Submit Order / Group Order](https://openapi-itsacheckmate.readme.io/reference/submit-an-order.md): Creat an **Order** for your location, or create a **Group Order** for your location. The location has to be verified first in order to call this API.You can only access this API if you have an access token issued with the scope orders.  A group order refers to an order that is placed by multiple individuals together. It means that multiple people are placing their individual orders as part of a single order, which is then delivered together. The group_order field in the meta section of the order object indicates whether it is a group order or not. In this case, the value is true, indicating that it is a group order.
+- [Menu Updates](https://openapi-itsacheckmate.readme.io/reference/update-notice.md): Keep your menus in sync with your restaurant customers in real time!
+- [Special hours](https://openapi-itsacheckmate.readme.io/reference/special-hours.md): Special closures and holiday hours
+- [Get Started with Postman API](https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api.md)
+
+## Pages
+- [Frequently Asked Questions](https://openapi-itsacheckmate.readme.io/page/faq.md)
+- [Order Receivers](https://openapi-itsacheckmate.readme.io/page/order-receivers.md)
+
+## Changelog
+- [Updates in v2.2](https://openapi-itsacheckmate.readme.io/changelog/updates-in-v22.md)
+- [Updates in v2.1](https://openapi-itsacheckmate.readme.io/changelog/updates-in-v21.md)

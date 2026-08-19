@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ItsaCheckmate Marketplace for Developers Locations Orders API",
+    "version": "2.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ItsaCheckmate Submit Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox-api.itsacheckmate.com/api/v2/orders/:order_source",
+            "headers": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ],
+            "params": [
+              {
+                "name": "order_source",
+                "value": "doordash",
+                "type": "path",
+                "description": "Name of the ordering platform the order originates from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submits a standard order or a group order into the location's POS system for a specific ordering platform. A group order, indicated by the group_order flag, is an order placed by multiple individuals together. The location must be verified before orders can be submitted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
