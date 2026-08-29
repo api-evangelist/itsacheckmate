@@ -8,6 +8,18 @@ description: >-
   write menus, orders, and locations across many POS systems. The API uses OAuth-style token authentication with
   short-lived, scoped access and refresh tokens, ready-to-use Postman collections, and an llms.txt index for AI agents.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
