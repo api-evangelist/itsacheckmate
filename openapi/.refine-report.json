@@ -15,6 +15,12 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "itsacheckmate-locations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "itsacheckmate-menus-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "itsacheckmate-oauth-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "itsacheckmate-orders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

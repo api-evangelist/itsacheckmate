@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: ItsaCheckmate Marketplace for Developers Locations Menus API
   version: '2.2'
@@ -103,22 +103,6 @@ components:
         available:
           type: boolean
           description: Whether the item is currently available.
-    Menu:
-      title: Menu
-      type: object
-      description: A location menu as published to one ordering platform.
-      properties:
-        order_source:
-          type: string
-          description: Ordering platform this menu is published to.
-        location_id:
-          type: string
-          description: Identifier of the location the menu belongs to.
-        categories:
-          type: array
-          description: Menu categories.
-          items:
-            $ref: '#/components/schemas/MenuCategory'
     MenuCategory:
       title: MenuCategory
       type: object
@@ -135,6 +119,22 @@ components:
           description: Items in the category.
           items:
             $ref: '#/components/schemas/MenuItem'
+    Menu:
+      title: Menu
+      type: object
+      description: A location menu as published to one ordering platform.
+      properties:
+        order_source:
+          type: string
+          description: Ordering platform this menu is published to.
+        location_id:
+          type: string
+          description: Identifier of the location the menu belongs to.
+        categories:
+          type: array
+          description: Menu categories.
+          items:
+            $ref: '#/components/schemas/MenuCategory'
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: ItsaCheckmate Marketplace for Developers Locations Orders API
   version: '2.2'
@@ -105,20 +105,40 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    OrderTotals:
-      title: OrderTotals
+    Order:
+      title: Order
       type: object
-      description: Monetary totals for an order, in the smallest currency unit (cents).
+      description: An order to submit into the POS.
+      required:
+      - external_id
+      - items
       properties:
-        subtotal:
-          type: integer
-          description: Sum of line items before tax.
-        tax:
-          type: integer
-          description: Tax amount.
-        total:
-          type: integer
-          description: Grand total charged.
+        external_id:
+          type: string
+          description: Identifier of the order in the originating ordering platform.
+        order_source:
+          type: string
+          description: Ordering platform the order originated from.
+        group_order:
+          type: boolean
+          description: Whether this is a group order placed by multiple individuals together.
+          default: false
+        customer:
+          $ref: '#/components/schemas/Customer'
+        items:
+          type: array
+          description: Line items in the order.
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        totals:
+          $ref: '#/components/schemas/OrderTotals'
+        payment_status:
+          type: string
+          description: Payment status of the order.
+          enum:
+          - paid
+          - unpaid
+          - refunded
     OrderConfirmation:
       title: OrderConfirmation
       type: object
@@ -157,40 +177,20 @@ components:
         price:
           type: integer
           description: Unit price in the smallest currency unit (cents).
-    Order:
-      title: Order
+    OrderTotals:
+      title: OrderTotals
       type: object
-      description: An order to submit into the POS.
-      required:
-      - external_id
-      - items
+      description: Monetary totals for an order, in the smallest currency unit (cents).
       properties:
-        external_id:
-          type: string
-          description: Identifier of the order in the originating ordering platform.
-        order_source:
-          type: string
-          description: Ordering platform the order originated from.
-        group_order:
-          type: boolean
-          description: Whether this is a group order placed by multiple individuals together.
-          default: false
-        customer:
-          $ref: '#/components/schemas/Customer'
-        items:
-          type: array
-          description: Line items in the order.
-          items:
-            $ref: '#/components/schemas/OrderItem'
-        totals:
-          $ref: '#/components/schemas/OrderTotals'
-        payment_status:
-          type: string
-          description: Payment status of the order.
-          enum:
-          - paid
-          - unpaid
-          - refunded
+        subtotal:
+          type: integer
+          description: Sum of line items before tax.
+        tax:
+          type: integer
+          description: Tax amount.
+        total:
+          type: integer
+          description: Grand total charged.
     Customer:
       title: Customer
       type: object

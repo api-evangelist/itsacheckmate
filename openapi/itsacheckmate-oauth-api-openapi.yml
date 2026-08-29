@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ItsaCheckmate Marketplace for Developers Locations OAuth API
+  title: ItsaCheckmate Marketplace for Developers Locations O Auth API
   version: '2.2'
   description: 'ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.
 
