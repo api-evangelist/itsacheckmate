@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: ItsaCheckmate Marketplace for Developers Locations O Auth API
+  title: ItsaCheckmate Marketplace for Developers O Auth API
   version: '2.2'
-  description: 'ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.
-
-    Authentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.
-
-    Endpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.'
+  description: ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels.
   contact:
     name: ItsaCheckmate Marketplace for Developers
     url: https://openapi-itsacheckmate.readme.io/reference/getting-started
@@ -102,26 +98,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TokenResponse:
-      title: TokenResponse
-      type: object
-      description: Issued access and refresh tokens.
-      properties:
-        access_token:
-          type: string
-          description: Short-lived scoped access token.
-        refresh_token:
-          type: string
-          description: Token used to obtain a new access token.
-        token_type:
-          type: string
-          description: Token type, always Bearer.
-        expires_in:
-          type: integer
-          description: Lifetime of the access token in seconds. Defaults to 86400 (24 hours).
-        scope:
-          type: string
-          description: Space-delimited list of granted scopes.
     TokenRequest:
       title: TokenRequest
       type: object
@@ -152,6 +128,26 @@ components:
         refresh_token:
           type: string
           description: Refresh token. Omit for the initial authorization_code request.
+    TokenResponse:
+      title: TokenResponse
+      type: object
+      description: Issued access and refresh tokens.
+      properties:
+        access_token:
+          type: string
+          description: Short-lived scoped access token.
+        refresh_token:
+          type: string
+          description: Token used to obtain a new access token.
+        token_type:
+          type: string
+          description: Token type, always Bearer.
+        expires_in:
+          type: integer
+          description: Lifetime of the access token in seconds. Defaults to 86400 (24 hours).
+        scope:
+          type: string
+          description: Space-delimited list of granted scopes.
     TokenInfo:
       title: TokenInfo
       type: object

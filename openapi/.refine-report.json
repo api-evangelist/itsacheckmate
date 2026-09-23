@@ -1,10 +1,7 @@
 {
   "provider": "itsacheckmate",
   "sources": [
-    "itsacheckmate-locations-api-openapi.yml",
-    "itsacheckmate-menus-api-openapi.yml",
-    "itsacheckmate-oauth-api-openapi.yml",
-    "itsacheckmate-orders-api-openapi.yml"
+    "_ae-authored/itsacheckmate-marketplace-api.yml"
   ],
   "outputs": [
     "itsacheckmate-locations-api-openapi.yml",
@@ -12,15 +9,21 @@
     "itsacheckmate-oauth-api-openapi.yml",
     "itsacheckmate-orders-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "itsacheckmate-locations-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "itsacheckmate-menus-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "itsacheckmate-oauth-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "itsacheckmate-orders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "itsacheckmate-marketplace-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: itsacheckmate-o-auth-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 4 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "itsacheckmate-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itsacheckmate-menus-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itsacheckmate-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "itsacheckmate-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

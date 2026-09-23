@@ -1,12 +1,8 @@
 openapi: 3.2.0
 info:
-  title: ItsaCheckmate Marketplace for Developers Locations Orders API
+  title: ItsaCheckmate Marketplace for Developers Orders API
   version: '2.2'
-  description: 'ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.
-
-    Authentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.
-
-    Endpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.'
+  description: ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels.
   contact:
     name: ItsaCheckmate Marketplace for Developers
     url: https://openapi-itsacheckmate.readme.io/reference/getting-started
@@ -105,6 +101,52 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Customer:
+      title: Customer
+      type: object
+      description: Customer who placed the order.
+      properties:
+        name:
+          type: string
+          description: Customer name.
+        phone:
+          type: string
+          description: Customer phone number in E.164 format.
+    OrderTotals:
+      title: OrderTotals
+      type: object
+      description: Monetary totals for an order, in the smallest currency unit (cents).
+      properties:
+        subtotal:
+          type: integer
+          description: Sum of line items before tax.
+        tax:
+          type: integer
+          description: Tax amount.
+        total:
+          type: integer
+          description: Grand total charged.
+    OrderConfirmation:
+      title: OrderConfirmation
+      type: object
+      description: Confirmation that an order was accepted into the POS.
+      properties:
+        order_id:
+          type: string
+          description: ItsaCheckmate order identifier.
+        external_id:
+          type: string
+          description: Originating platform order identifier.
+        status:
+          type: string
+          description: Order acceptance status.
+          enum:
+          - accepted
+          - rejected
+          - pending
+        pos_reference:
+          type: string
+          description: Reference assigned by the POS system.
     Order:
       title: Order
       type: object
@@ -139,27 +181,6 @@ components:
           - paid
           - unpaid
           - refunded
-    OrderConfirmation:
-      title: OrderConfirmation
-      type: object
-      description: Confirmation that an order was accepted into the POS.
-      properties:
-        order_id:
-          type: string
-          description: ItsaCheckmate order identifier.
-        external_id:
-          type: string
-          description: Originating platform order identifier.
-        status:
-          type: string
-          description: Order acceptance status.
-          enum:
-          - accepted
-          - rejected
-          - pending
-        pos_reference:
-          type: string
-          description: Reference assigned by the POS system.
     OrderItem:
       title: OrderItem
       type: object
@@ -177,31 +198,6 @@ components:
         price:
           type: integer
           description: Unit price in the smallest currency unit (cents).
-    OrderTotals:
-      title: OrderTotals
-      type: object
-      description: Monetary totals for an order, in the smallest currency unit (cents).
-      properties:
-        subtotal:
-          type: integer
-          description: Sum of line items before tax.
-        tax:
-          type: integer
-          description: Tax amount.
-        total:
-          type: integer
-          description: Grand total charged.
-    Customer:
-      title: Customer
-      type: object
-      description: Customer who placed the order.
-      properties:
-        name:
-          type: string
-          description: Customer name.
-        phone:
-          type: string
-          description: Customer phone number in E.164 format.
   securitySchemes:
     bearerAuth:
       type: http
