@@ -113,20 +113,26 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ActivationResult:
-      title: ActivationResult
+    Address:
+      title: Address
       type: object
-      description: Result of activating the token's location.
+      description: Postal address of a location.
       properties:
-        activated:
-          type: boolean
-          description: Whether the location was activated.
-        location_id:
+        street:
           type: string
-          description: Identifier of the activated location.
-        message:
+          description: Street address.
+        city:
           type: string
-          description: Human-readable activation message.
+          description: City.
+        state:
+          type: string
+          description: State or region code.
+        zip:
+          type: string
+          description: Postal code.
+        country:
+          type: string
+          description: ISO country code.
     Location:
       title: Location
       type: object
@@ -149,26 +155,20 @@ components:
           description: Name of the connected POS system.
         address:
           $ref: '#/components/schemas/Address'
-    Address:
-      title: Address
+    ActivationResult:
+      title: ActivationResult
       type: object
-      description: Postal address of a location.
+      description: Result of activating the token's location.
       properties:
-        street:
+        activated:
+          type: boolean
+          description: Whether the location was activated.
+        location_id:
           type: string
-          description: Street address.
-        city:
+          description: Identifier of the activated location.
+        message:
           type: string
-          description: City.
-        state:
-          type: string
-          description: State or region code.
-        zip:
-          type: string
-          description: Postal code.
-        country:
-          type: string
-          description: ISO country code.
+          description: Human-readable activation message.
   securitySchemes:
     bearerAuth:
       type: http

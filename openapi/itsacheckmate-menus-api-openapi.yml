@@ -79,22 +79,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MenuCategory:
-      title: MenuCategory
-      type: object
-      description: A category grouping of menu items.
-      properties:
-        id:
-          type: string
-          description: Category identifier.
-        name:
-          type: string
-          description: Category name.
-        items:
-          type: array
-          description: Items in the category.
-          items:
-            $ref: '#/components/schemas/MenuItem'
     Menu:
       title: Menu
       type: object
@@ -111,6 +95,22 @@ components:
           description: Menu categories.
           items:
             $ref: '#/components/schemas/MenuCategory'
+    MenuCategory:
+      title: MenuCategory
+      type: object
+      description: A category grouping of menu items.
+      properties:
+        id:
+          type: string
+          description: Category identifier.
+        name:
+          type: string
+          description: Category name.
+        items:
+          type: array
+          description: Items in the category.
+          items:
+            $ref: '#/components/schemas/MenuItem'
     MenuItem:
       title: MenuItem
       type: object
