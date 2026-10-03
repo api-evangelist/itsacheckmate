@@ -113,26 +113,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Address:
-      title: Address
-      type: object
-      description: Postal address of a location.
-      properties:
-        street:
-          type: string
-          description: Street address.
-        city:
-          type: string
-          description: City.
-        state:
-          type: string
-          description: State or region code.
-        zip:
-          type: string
-          description: Postal code.
-        country:
-          type: string
-          description: ISO country code.
     Location:
       title: Location
       type: object
@@ -169,6 +149,26 @@ components:
         message:
           type: string
           description: Human-readable activation message.
+    Address:
+      title: Address
+      type: object
+      description: Postal address of a location.
+      properties:
+        street:
+          type: string
+          description: Street address.
+        city:
+          type: string
+          description: City.
+        state:
+          type: string
+          description: State or region code.
+        zip:
+          type: string
+          description: Postal code.
+        country:
+          type: string
+          description: ISO country code.
   securitySchemes:
     bearerAuth:
       type: http

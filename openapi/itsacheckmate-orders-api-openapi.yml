@@ -101,6 +101,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    OrderItem:
+      title: OrderItem
+      type: object
+      description: A single line item in an order.
+      properties:
+        id:
+          type: string
+          description: Menu item identifier.
+        name:
+          type: string
+          description: Item name.
+        quantity:
+          type: integer
+          description: Quantity ordered.
+        price:
+          type: integer
+          description: Unit price in the smallest currency unit (cents).
     OrderTotals:
       title: OrderTotals
       type: object
@@ -115,17 +132,6 @@ components:
         total:
           type: integer
           description: Grand total charged.
-    Customer:
-      title: Customer
-      type: object
-      description: Customer who placed the order.
-      properties:
-        name:
-          type: string
-          description: Customer name.
-        phone:
-          type: string
-          description: Customer phone number in E.164 format.
     OrderConfirmation:
       title: OrderConfirmation
       type: object
@@ -147,23 +153,17 @@ components:
         pos_reference:
           type: string
           description: Reference assigned by the POS system.
-    OrderItem:
-      title: OrderItem
+    Customer:
+      title: Customer
       type: object
-      description: A single line item in an order.
+      description: Customer who placed the order.
       properties:
-        id:
-          type: string
-          description: Menu item identifier.
         name:
           type: string
-          description: Item name.
-        quantity:
-          type: integer
-          description: Quantity ordered.
-        price:
-          type: integer
-          description: Unit price in the smallest currency unit (cents).
+          description: Customer name.
+        phone:
+          type: string
+          description: Customer phone number in E.164 format.
     Order:
       title: Order
       type: object
