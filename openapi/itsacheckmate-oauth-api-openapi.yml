@@ -98,26 +98,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TokenResponse:
-      title: TokenResponse
-      type: object
-      description: Issued access and refresh tokens.
-      properties:
-        access_token:
-          type: string
-          description: Short-lived scoped access token.
-        refresh_token:
-          type: string
-          description: Token used to obtain a new access token.
-        token_type:
-          type: string
-          description: Token type, always Bearer.
-        expires_in:
-          type: integer
-          description: Lifetime of the access token in seconds. Defaults to 86400 (24 hours).
-        scope:
-          type: string
-          description: Space-delimited list of granted scopes.
     TokenRequest:
       title: TokenRequest
       type: object
@@ -148,6 +128,26 @@ components:
         refresh_token:
           type: string
           description: Refresh token. Omit for the initial authorization_code request.
+    TokenResponse:
+      title: TokenResponse
+      type: object
+      description: Issued access and refresh tokens.
+      properties:
+        access_token:
+          type: string
+          description: Short-lived scoped access token.
+        refresh_token:
+          type: string
+          description: Token used to obtain a new access token.
+        token_type:
+          type: string
+          description: Token type, always Bearer.
+        expires_in:
+          type: integer
+          description: Lifetime of the access token in seconds. Defaults to 86400 (24 hours).
+        scope:
+          type: string
+          description: Space-delimited list of granted scopes.
     TokenInfo:
       title: TokenInfo
       type: object

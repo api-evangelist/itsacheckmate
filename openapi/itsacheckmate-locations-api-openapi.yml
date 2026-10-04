@@ -135,20 +135,6 @@ components:
           description: Name of the connected POS system.
         address:
           $ref: '#/components/schemas/Address'
-    ActivationResult:
-      title: ActivationResult
-      type: object
-      description: Result of activating the token's location.
-      properties:
-        activated:
-          type: boolean
-          description: Whether the location was activated.
-        location_id:
-          type: string
-          description: Identifier of the activated location.
-        message:
-          type: string
-          description: Human-readable activation message.
     Address:
       title: Address
       type: object
@@ -169,6 +155,20 @@ components:
         country:
           type: string
           description: ISO country code.
+    ActivationResult:
+      title: ActivationResult
+      type: object
+      description: Result of activating the token's location.
+      properties:
+        activated:
+          type: boolean
+          description: Whether the location was activated.
+        location_id:
+          type: string
+          description: Identifier of the activated location.
+        message:
+          type: string
+          description: Human-readable activation message.
   securitySchemes:
     bearerAuth:
       type: http
