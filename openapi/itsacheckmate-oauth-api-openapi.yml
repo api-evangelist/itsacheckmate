@@ -98,6 +98,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    TokenInfo:
+      title: TokenInfo
+      type: object
+      description: Introspection details for the current access token.
+      properties:
+        resource_owner_id:
+          type: string
+          description: Identifier of the location that owns the token.
+        scope:
+          type: array
+          description: Granted scopes.
+          items:
+            type: string
+        expires_in:
+          type: integer
+          description: Seconds remaining before the access token expires.
+        created_at:
+          type: integer
+          description: Unix epoch seconds when the token was created.
     TokenRequest:
       title: TokenRequest
       type: object
@@ -148,25 +167,6 @@ components:
         scope:
           type: string
           description: Space-delimited list of granted scopes.
-    TokenInfo:
-      title: TokenInfo
-      type: object
-      description: Introspection details for the current access token.
-      properties:
-        resource_owner_id:
-          type: string
-          description: Identifier of the location that owns the token.
-        scope:
-          type: array
-          description: Granted scopes.
-          items:
-            type: string
-        expires_in:
-          type: integer
-          description: Seconds remaining before the access token expires.
-        created_at:
-          type: integer
-          description: Unix epoch seconds when the token was created.
   securitySchemes:
     bearerAuth:
       type: http

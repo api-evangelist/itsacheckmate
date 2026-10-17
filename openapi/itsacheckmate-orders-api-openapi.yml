@@ -101,6 +101,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    OrderItem:
+      title: OrderItem
+      type: object
+      description: A single line item in an order.
+      properties:
+        id:
+          type: string
+          description: Menu item identifier.
+        name:
+          type: string
+          description: Item name.
+        quantity:
+          type: integer
+          description: Quantity ordered.
+        price:
+          type: integer
+          description: Unit price in the smallest currency unit (cents).
     Order:
       title: Order
       type: object
@@ -181,23 +198,6 @@ components:
         pos_reference:
           type: string
           description: Reference assigned by the POS system.
-    OrderItem:
-      title: OrderItem
-      type: object
-      description: A single line item in an order.
-      properties:
-        id:
-          type: string
-          description: Menu item identifier.
-        name:
-          type: string
-          description: Item name.
-        quantity:
-          type: integer
-          description: Quantity ordered.
-        price:
-          type: integer
-          description: Unit price in the smallest currency unit (cents).
   securitySchemes:
     bearerAuth:
       type: http
