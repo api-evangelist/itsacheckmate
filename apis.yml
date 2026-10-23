@@ -143,6 +143,8 @@ apis:
   - type: LlmsText
     url: https://openapi-itsacheckmate.readme.io/llms.txt
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/itsacheckmate/overview
   - type: AgenticAccess
     url: agentic-access/itsacheckmate-agentic-access.yml
   - type: DomainSecurity
