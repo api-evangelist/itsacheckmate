@@ -1,365 +1,335 @@
 {
+  "info": {
+    "_postman_id": "5420d628-c61d-4b38-8843-1fa6b8cbe37f",
+    "name": "ItsaCheckmate Marketplace for Developers Locations API",
+    "description": "ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels.\n\nContact Support:\n Name: ItsaCheckmate Marketplace for Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:22:14.000Z",
+    "updatedAt": "2026-10-21T20:22:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5420d628-c61d-4b38-8843-1fa6b8cbe37f"
+  },
   "item": [
     {
-      "id": "15fe5ad7-da74-4574-b855-673acbbd35c7",
-      "name": "Locations",
-      "description": {
-        "content": "Location activation and location detail retrieval.",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "12a95f79-71f1-413d-9cd6-ebc86bac821d",
-          "name": "ItsaCheckmate Activate Location",
-          "request": {
-            "name": "ItsaCheckmate Activate Location",
-            "description": {
-              "content": "Activates the location associated with the access token. This must be the first call made after generating an access token; until the location is activated, none of the Menu or Order operations can be accessed.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "activate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "50084655-1d9e-48f1-ad9b-1b52588cb604",
-              "name": "Location activated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "activate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+              "name": "activate",
+              "item": [
+                {
+                  "name": "ItsaCheckmate Activate Location",
+                  "id": "90d533e4-cd9d-4047-bc8b-7b0014a3fa74",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Response media type. Defaults to application/json.",
-                    "key": "accept",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"activated\": true,\n  \"location_id\": \"loc_500123\",\n  \"message\": \"Location activated successfully\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "26e2934f-8e53-4b10-a83b-62814a482f7b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "activate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "activate"
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "description": "Activates the location associated with the access token. This must be the first call made after generating an access token; until the location is activated, none of the Menu or Order operations can be accessed."
                   },
-                  {
-                    "disabled": false,
-                    "description": "Response media type. Defaults to application/json.",
-                    "key": "accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f021a7a1-5e62-455a-9621-3c7e14e4f443",
-          "name": "ItsaCheckmate Get Location",
-          "request": {
-            "name": "ItsaCheckmate Get Location",
-            "description": {
-              "content": "Returns the details of the location associated with the access token, including its time zone in TZ database format. The location does not have to be verified first in order to call this operation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "get_location"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "9fab5cf6-8712-4019-939c-a2b6716359a3",
-              "name": "Location detail",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "get_location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "response": [
+                    {
+                      "id": "5a61c08b-a931-4485-8e6c-720cdf250df4",
+                      "name": "Location activated",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "activate"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"activated\": \"<boolean>\",\n  \"location_id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:22:14.000Z",
+                      "updatedAt": "2026-10-21T20:22:14.000Z",
+                      "uid": "35240-5a61c08b-a931-4485-8e6c-720cdf250df4"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Response media type. Defaults to application/json.",
-                    "key": "accept",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                    {
+                      "id": "f45acc87-c6ac-4758-9fb6-ec9851e154f9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "activate"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:22:14.000Z",
+                      "updatedAt": "2026-10-21T20:22:14.000Z",
+                      "uid": "35240-f45acc87-c6ac-4758-9fb6-ec9851e154f9"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:14.000Z",
+                  "updatedAt": "2026-10-21T20:22:14.000Z",
+                  "uid": "35240-90d533e4-cd9d-4047-bc8b-7b0014a3fa74"
                 }
               ],
-              "body": "{\n  \"id\": \"loc_500123\",\n  \"name\": \"Downtown Diner\",\n  \"timezone\": \"America/New_York\",\n  \"verified\": true,\n  \"pos_system\": \"Toast\",\n  \"address\": {\n    \"street\": \"123 Main St\",\n    \"city\": \"New York\",\n    \"state\": \"NY\",\n    \"zip\": \"10001\",\n    \"country\": \"US\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fa53c1e2-3cc9-4859-ab22-4a6ce31ff82c",
+              "createdAt": "2026-10-21T20:22:14.000Z",
+              "updatedAt": "2026-10-21T20:22:14.000Z",
+              "uid": "35240-fa53c1e2-3cc9-4859-ab22-4a6ce31ff82c"
             },
             {
-              "id": "95ec3a34-b90a-4a45-931b-0b6ce8cc88b1",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "get_location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Response media type. Defaults to application/json.",
-                    "key": "accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "get_location",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "ItsaCheckmate Get Location",
+                  "id": "648b2e87-ddf4-44ba-95aa-aaaa73195054",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/get_location",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "get_location"
+                      ]
+                    },
+                    "description": "Returns the details of the location associated with the access token, including its time zone in TZ database format. The location does not have to be verified first in order to call this operation."
+                  },
+                  "response": [
+                    {
+                      "id": "374a1a7c-373c-41d2-a0ee-d3c1337f3650",
+                      "name": "Location detail",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/get_location",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "get_location"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"verified\": \"<boolean>\",\n  \"pos_system\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:22:14.000Z",
+                      "updatedAt": "2026-10-21T20:22:14.000Z",
+                      "uid": "35240-374a1a7c-373c-41d2-a0ee-d3c1337f3650"
+                    },
+                    {
+                      "id": "c705a0ff-452a-49d8-93d7-f92e0beb5809",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/get_location",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "get_location"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:22:14.000Z",
+                      "updatedAt": "2026-10-21T20:22:14.000Z",
+                      "uid": "35240-c705a0ff-452a-49d8-93d7-f92e0beb5809"
+                    },
+                    {
+                      "id": "0279907e-c74d-4e9c-9775-000e3f98bd4d",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/get_location",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "get_location"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:22:14.000Z",
+                      "updatedAt": "2026-10-21T20:22:14.000Z",
+                      "uid": "35240-0279907e-c74d-4e9c-9775-000e3f98bd4d"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:14.000Z",
+                  "updatedAt": "2026-10-21T20:22:14.000Z",
+                  "uid": "35240-648b2e87-ddf4-44ba-95aa-aaaa73195054"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b2f83d38-d2fe-4bfb-9e20-bbc4d9920e82",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "get_location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Response media type. Defaults to application/json.",
-                    "key": "accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "4d5a6f75-6695-4c62-a195-73dc7795811b",
+              "createdAt": "2026-10-21T20:22:14.000Z",
+              "updatedAt": "2026-10-21T20:22:14.000Z",
+              "uid": "35240-4d5a6f75-6695-4c62-a195-73dc7795811b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8b88f71b-747b-4b43-ac96-c3de16ec909b",
+          "createdAt": "2026-10-21T20:22:14.000Z",
+          "updatedAt": "2026-10-21T20:22:14.000Z",
+          "uid": "35240-8b88f71b-747b-4b43-ac96-c3de16ec909b"
         }
       ],
-      "event": []
+      "id": "3bbdb48e-4a4c-4289-a7b4-26dd575f2afb",
+      "createdAt": "2026-10-21T20:22:14.000Z",
+      "updatedAt": "2026-10-21T20:22:14.000Z",
+      "uid": "35240-3bbdb48e-4a4c-4289-a7b4-26dd575f2afb"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://sandbox-api.itsacheckmate.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://sandbox-api.itsacheckmate.com"
     }
-  ],
-  "info": {
-    "_postman_id": "4bce7561-4289-4460-a000-8cab8d57c167",
-    "name": "ItsaCheckmate Marketplace for Developers Locations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale (POS) systems to delivery marketplaces and online ordering channels. The Marketplace for Developers API is an open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across 50+ POS systems and 100+ ordering platforms.\nAuthentication uses an OAuth-style flow: a token endpoint issues short-lived, scoped access tokens (24-hour default expiry) and refresh tokens. After obtaining a token a partner must call the Activate Location endpoint before any menu or order operation will succeed. Menu retrieval requires the `menus` scope. Order submission supports both standard and group orders via a `group_order` flag and requires a verified location.\nEndpoints documented here were confirmed from the official Checkmate developer reference (openapi-itsacheckmate.readme.io) and its llms.txt index. The reference also publishes ready-to-use Postman collections and an Update Notice webhook for real-time menu synchronization.\n\nContact Support:\n Name: ItsaCheckmate Marketplace for Developers",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
