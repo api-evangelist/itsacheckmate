@@ -1,4 +1,4 @@
-# ItsaCheckmate (itsacheckmate)
+# ItsaCheckmate
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,72 +66,200 @@
 
 ItsaCheckmate (Checkmate) is restaurant middleware that connects point-of-sale systems to delivery marketplaces and ordering channels, providing two-way integration, menu management, and consolidated reporting across 50+ POS systems and 100+ ordering platforms for tens of thousands of restaurant locations. Through its Marketplace for Developers, Checkmate offers a self-service open REST API that lets technology partners build a single integration to read and write menus, orders, and locations across many POS systems. The API uses OAuth-style token authentication with short-lived, scoped access and refresh tokens, ready-to-use Postman collections, and an llms.txt index for AI agents.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/itsacheckmate/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Point-of-Sale · Online Ordering · Delivery · Menus · Order · Integration
 
-## Scope
+## ItsaCheckmate on APIs.io
 
-- **Type:** Index
+Everything profiled for ItsaCheckmate is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/itsacheckmate/](https://apis.io/providers/itsacheckmate/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Restaurant
-- Point Of Sale
-- Online Ordering
-- Delivery
-- Menus
-- Orders
-- Integration
+- [ItsaCheckmate Locations API](https://apis.io/apis/itsacheckmate/itsacheckmate-locations-api/) — Location activation and location detail retrieval.
+- [ItsaCheckmate Menus API](https://apis.io/apis/itsacheckmate/itsacheckmate-menus-api/) — Menu retrieval per ordering platform.
+- [ItsaCheckmate Orders API](https://apis.io/apis/itsacheckmate/itsacheckmate-orders-api/) — Standard and group order submission into the POS.
+- [ItsaCheckmate O Auth API](https://apis.io/apis/itsacheckmate/itsacheckmate-oauth-api/) — Token issuance, refresh, and introspection.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-06-02
-- **Modified:** 2026-06-02
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Marketplace for Developers API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-An open REST API that lets developers build one integration and read and write menus, orders, and locations across 50+ POS systems. Resources include location activation, menu retrieval, single and group order submission, special hours and closures, and token management. Authentication uses OAuth-style short-lived, scoped access tokens with refresh tokens, defaulting to 24-hour token expiry.
+- [Itsacheckmate Agentic Access](https://apis.io/agentic-access/itsacheckmate/itsacheckmate-agentic-access/)
 
-- **Human URL:** [https://openapi-itsacheckmate.readme.io/reference/getting-started](https://openapi-itsacheckmate.readme.io/reference/getting-started)
-- **Base URL:** `https://sandbox-api.itsacheckmate.com`
+#### JSON Schema (14)
 
-#### Tags
+The data models the API reads and writes.
 
-- Point Of Sale
-- Menus
-- Orders
-- Locations
+- [ActivationResult](https://apis.io/schemas/itsacheckmate/marketplace-api-activation-result/)
+- [Address](https://apis.io/schemas/itsacheckmate/marketplace-api-address/)
+- [Customer](https://apis.io/schemas/itsacheckmate/marketplace-api-customer/)
+- [Location](https://apis.io/schemas/itsacheckmate/marketplace-api-location/)
+- [Menu](https://apis.io/schemas/itsacheckmate/marketplace-api-menu/)
+- [MenuCategory](https://apis.io/schemas/itsacheckmate/marketplace-api-menu-category/)
+- [MenuItem](https://apis.io/schemas/itsacheckmate/marketplace-api-menu-item/)
+- [Order](https://apis.io/schemas/itsacheckmate/marketplace-api-order/)
+- [OrderConfirmation](https://apis.io/schemas/itsacheckmate/marketplace-api-order-confirmation/)
+- [OrderItem](https://apis.io/schemas/itsacheckmate/marketplace-api-order-item/)
+- [OrderTotals](https://apis.io/schemas/itsacheckmate/marketplace-api-order-totals/)
+- [TokenInfo](https://apis.io/schemas/itsacheckmate/marketplace-api-token-info/)
+- [TokenRequest](https://apis.io/schemas/itsacheckmate/marketplace-api-token-request/)
+- [TokenResponse](https://apis.io/schemas/itsacheckmate/marketplace-api-token-response/)
 
-#### Properties
+#### JSON Structure (14)
 
-- [OpenAPI](openapi/itsacheckmate-marketplace-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/itsacheckmate-marketplace-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/itsacheckmate-marketplace-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Documentation](https://openapi-itsacheckmate.readme.io/reference/getting-started)
-- [Getting Started](https://openapi-itsacheckmate.readme.io/reference/getting-started)
-- [Postman](https://openapi-itsacheckmate.readme.io/reference/get-started-with-postman-api) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Webhook](https://openapi-itsacheckmate.readme.io/reference/update-notice)
-- [L L Ms Txt](https://openapi-itsacheckmate.readme.io/llms.txt)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Marketplace Api Activation Result Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-activation-result-structure/)
+- [Marketplace Api Address Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-address-structure/)
+- [Marketplace Api Customer Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-customer-structure/)
+- [Marketplace Api Location Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-location-structure/)
+- [Marketplace Api Menu Category Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-menu-category-structure/)
+- [Marketplace Api Menu Item Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-menu-item-structure/)
+- [Marketplace Api Menu Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-menu-structure/)
+- [Marketplace Api Order Confirmation Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-order-confirmation-structure/)
+- [Marketplace Api Order Item Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-order-item-structure/)
+- [Marketplace Api Order Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-order-structure/)
+- [Marketplace Api Order Totals Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-order-totals-structure/)
+- [Marketplace Api Token Info Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-token-info-structure/)
+- [Marketplace Api Token Request Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-token-request-structure/)
+- [Marketplace Api Token Response Structure](https://apis.io/json-structure/itsacheckmate/marketplace-api-token-response-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Itsacheckmate Context](https://apis.io/jsonld/itsacheckmate/itsacheckmate-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Itsacheckmate Vocabulary](https://apis.io/vocabularies/itsacheckmate/itsacheckmate-vocabulary/)
+
+#### Examples (14)
+
+Example requests and responses.
+
+- [Marketplace Api Activation Result Example](https://apis.io/examples/itsacheckmate/marketplace-api-activation-result-example/)
+- [Marketplace Api Address Example](https://apis.io/examples/itsacheckmate/marketplace-api-address-example/)
+- [Marketplace Api Customer Example](https://apis.io/examples/itsacheckmate/marketplace-api-customer-example/)
+- [Marketplace Api Location Example](https://apis.io/examples/itsacheckmate/marketplace-api-location-example/)
+- [Marketplace Api Menu Category Example](https://apis.io/examples/itsacheckmate/marketplace-api-menu-category-example/)
+- [Marketplace Api Menu Example](https://apis.io/examples/itsacheckmate/marketplace-api-menu-example/)
+- [Marketplace Api Menu Item Example](https://apis.io/examples/itsacheckmate/marketplace-api-menu-item-example/)
+- [Marketplace Api Order Confirmation Example](https://apis.io/examples/itsacheckmate/marketplace-api-order-confirmation-example/)
+- [Marketplace Api Order Example](https://apis.io/examples/itsacheckmate/marketplace-api-order-example/)
+- [Marketplace Api Order Item Example](https://apis.io/examples/itsacheckmate/marketplace-api-order-item-example/)
+- [Marketplace Api Order Totals Example](https://apis.io/examples/itsacheckmate/marketplace-api-order-totals-example/)
+- [Marketplace Api Token Info Example](https://apis.io/examples/itsacheckmate/marketplace-api-token-info-example/)
+- [Marketplace Api Token Request Example](https://apis.io/examples/itsacheckmate/marketplace-api-token-request-example/)
+- [Marketplace Api Token Response Example](https://apis.io/examples/itsacheckmate/marketplace-api-token-response-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [ItsaCheckmate Marketplace for Developers Locations API](https://apis.io/collections/itsacheckmate/open-itsacheckmate-locations-api/)
+- [ItsaCheckmate Marketplace for Developers API](https://apis.io/collections/itsacheckmate/open-itsacheckmate-marketplace-api/)
+- [ItsaCheckmate Marketplace for Developers Locations Menus API](https://apis.io/collections/itsacheckmate/open-itsacheckmate-menus-api/)
+- [ItsaCheckmate Marketplace for Developers Locations OAuth API](https://apis.io/collections/itsacheckmate/open-itsacheckmate-oauth-api/)
+- [ItsaCheckmate Marketplace for Developers Locations Orders API](https://apis.io/collections/itsacheckmate/open-itsacheckmate-orders-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [ItsaCheckmate — jsonschema rules](https://apis.io/rules/itsacheckmate/itsacheckmate-jsonschema-spectral-rules/)
+- [ItsaCheckmate API Rules](https://apis.io/rules/itsacheckmate/itsacheckmate-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Itsacheckmate Authentication](https://apis.io/security/itsacheckmate/itsacheckmate-authentication/)
+- [Itsacheckmate Domain Security](https://apis.io/security/itsacheckmate/itsacheckmate-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Itsacheckmate Plans Pricing](https://apis.io/plans/itsacheckmate/itsacheckmate-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Itsacheckmate Rate Limits](https://apis.io/rate-limits/itsacheckmate/itsacheckmate-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Itsacheckmate Finops](https://apis.io/finops/itsacheckmate/itsacheckmate-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.itsacheckmate.com/)
 - [Documentation](https://www.itsacheckmate.com/solutions/marketplace-for-developers)
-- [API Reference](https://openapi-itsacheckmate.readme.io/reference/getting-started)
+- [API reference](https://openapi-itsacheckmate.readme.io/reference/getting-started)
 - [Pricing](https://support.itsacheckmate.com/hc/en-us/articles/8105450179867-Checkmate-Pricing)
 - [Support](https://support.itsacheckmate.com/hc/en-us)
 - [Blog](https://www.itsacheckmate.com/blog)
-- [LinkedIn](https://www.linkedin.com/company/itsacheckmate)
-- [L L Ms Txt](https://openapi-itsacheckmate.readme.io/llms.txt)
-- [Rules](rules/itsacheckmate-spectral-rules.yml)
-- [Vocabulary](vocabulary/itsacheckmate-vocabulary.yml)
-- [JSON-LD](json-ld/itsacheckmate-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Plans](plans/itsacheckmate-plans-pricing.yml)
-- [Rate Limits](rate-limits/itsacheckmate-rate-limits.yml)
-- [Fin Ops](finops/itsacheckmate-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 32.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 22.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 11.8 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 18.4 |
+
+**Agent readiness 26.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/itsacheckmate/](https://apis.io/providers/itsacheckmate/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ItsaCheckmate: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/itsacheckmate/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
